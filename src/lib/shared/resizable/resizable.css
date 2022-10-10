@@ -1,0 +1,61 @@
+.editor-mode .resizable .resizable-container {
+	display: block;
+}
+
+.editor-mode .resizable:hover,
+.editor-mode .resizable:hover .resizer {
+	outline: 1px solid var(--outline-color);
+}
+
+.resizable {
+	--dot-size: 5px;
+}
+
+.resizable:hover {
+	box-sizing: border-box;
+	height: 100%;
+	width: 100%;
+}
+
+.resizable .resizer {
+	background-color: transparent;
+	height: 0;
+	position: absolute;
+	width: 0;
+}
+
+.resizable:hover .resizer {
+	background-color: var(--bg-color);
+	height: var(--dot-size);
+	width: var(--dot-size);
+}
+
+.resizable .resizable-container {
+	display: none;
+	height: 0;
+	width: 0;
+}
+
+.resizable .resizer.top-left {
+	cursor: nwse-resize;
+	left: 0;
+	top: 0;
+}
+
+.resizable .resizer.top-right {
+	cursor: nesw-resize;
+	right: 0;
+	top: 0;
+}
+
+.resizable .resizer.bottom-left {
+	bottom: 0;
+	cursor: nesw-resize;
+	left: 0;
+}
+
+.resizable .resizer.bottom-right {
+	bottom: 0;
+	cursor: nwse-resize;
+	right: 0;
+}

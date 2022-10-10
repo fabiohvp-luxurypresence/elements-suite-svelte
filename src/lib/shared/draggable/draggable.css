@@ -1,0 +1,60 @@
+.editor-mode .draggable .draggable-container {
+	display: block;
+}
+
+.draggable {
+	--detector-size: 5px;
+}
+
+.draggable.dragging {
+	user-select: none;
+}
+
+.draggable .draggable-container{
+	display: none;
+}
+
+.draggable[draggable="true"] .draggable-container .detector {
+	background-color: var(--outline-color);
+	opacity: .1;
+}
+
+.draggable[draggable="true"] .draggable-container:hover{
+	cursor: move;
+}
+
+.draggable .detector {
+	display: none;
+	position: absolute;
+}
+
+.draggable:hover .detector {
+	display: block;
+}
+
+.draggable .detector.bottom {
+	left: 0;
+	height: var(--detector-size);
+	bottom: 0;
+	width: 100%;
+}
+
+.draggable .detector.left {
+	height: 100%;
+	top: 0;
+	width: var(--detector-size);
+}
+
+.draggable .detector.right {
+	height: 100%;
+	right: 0;
+	top: 0;
+	width: var(--detector-size);
+}
+
+.draggable .detector.top {
+	left: 0;
+	height: var(--detector-size);
+	top: 0;
+	width: 100%;
+}

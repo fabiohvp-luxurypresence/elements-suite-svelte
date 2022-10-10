@@ -1,0 +1,73 @@
+{
+	"elementKey": "before-after",
+	"snapshotUrl": "https://res.cloudinary.com/luxuryp/images/f_auto,q_auto/ece6mkrlqodh5xvdfek7/before-after",
+	"elementType": "SLIDE_ELEMENT",
+	"formInputs": [
+		{
+			"label": "Image",
+			"type": "IMAGE",
+			"variable": "imageUploadLeft",
+			"defaultValue": "https://res.cloudinary.com/luxuryp/images/f_auto,q_auto/c20g9vrvdws5sdlvfrbm/living-room",
+			"values": [],
+			"isResourceVar": false,
+			"customSchema": null,
+			"placeholder": "",
+			"panelLabel": "Edit left image"
+		},
+		{
+			"label": "Heading",
+			"type": "TEXTAREA",
+			"variable": "titleLeft",
+			"defaultValue": "Welcome",
+			"values": [],
+			"isResourceVar": false,
+			"customSchema": null,
+			"placeholder": "",
+			"panelLabel": "Edit left text"
+		},
+		{
+			"label": "Image",
+			"type": "IMAGE",
+			"variable": "imageUploadRight",
+			"defaultValue": "https://res.cloudinary.com/luxuryp/images/w_1920,c_limit,f_auto,q_auto/vlpqb06o3qdhi9nubjm3/stocksy_txp4c549b86uif300_large_3575119",
+			"values": [],
+			"isResourceVar": false,
+			"customSchema": null,
+			"placeholder": "",
+			"panelLabel": "Edit right image"
+		},
+		{
+			"label": "Heading",
+			"type": "TEXTAREA",
+			"variable": "titleRight",
+			"defaultValue": "Welcome",
+			"values": [],
+			"isResourceVar": false,
+			"customSchema": null,
+			"placeholder": "",
+			"panelLabel": "Edit right text"
+		},
+		{
+			"label": "Background Color",
+			"type": "COLOR",
+			"variable": "backgroundColor",
+			"defaultValue": "#F5F5F5",
+			"values": [],
+			"isResourceVar": false,
+			"customSchema": null,
+			"placeholder": "",
+			"panelLabel": "Panel header"
+		},
+		{
+			"label": "Text Color",
+			"type": "COLOR",
+			"variable": "textColor",
+			"defaultValue": "#FFFDFB",
+			"values": [],
+			"isResourceVar": false,
+			"customSchema": null,
+			"placeholder": "",
+			"panelLabel": "Panel header"
+		}
+	]
+}

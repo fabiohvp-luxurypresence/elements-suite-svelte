@@ -1,0 +1,14 @@
+.dynamic-text {
+	display: block;
+	height: 100%;
+	outline: none;
+	width: 100%;
+}
+
+.dynamic-text[contenteditable='true'] {
+	outline: 1px solid var(--outline-color);
+}
+
+.invisible {
+	visibility: hidden;
+}

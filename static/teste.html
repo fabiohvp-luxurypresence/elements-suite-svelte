@@ -1,0 +1,53 @@
+<html>
+	<head>
+		<link href="./app1.css" rel="stylesheet" type="text/css" />
+		<link href="./test.css" rel="stylesheet" type="text/css" />
+	</head>
+
+	<body>
+		<div id="teste" class="editor-container"></div>
+		<!-- <button id="btn">Toggle preview</button> -->
+
+		<script type="module">
+			import X, { elements as elementsStore } from './test.js';
+
+			const container = document.getElementById('teste');
+
+			const componentInstance = new X({
+				target: container,
+				props: {
+					// header: 'Jane Williams',
+					preview: false
+				}
+			});
+
+			// setTimeout(() => {
+			// 	componentInstance.$set({ header: 'xxxd' });
+			// }, 1000);
+
+			// let mode = 'editor';
+
+			// elementsStore.subscribe((v) => {
+			// 	if (v.preview) {
+			// 		container.classList.add('preview-mode');
+			// 		container.classList.remove('editor-mode');
+			// 	} else {
+			// 		container.classList.remove('preview-mode');
+			// 		container.classList.add('editor-mode');
+			// 	}
+			// });
+
+			// const btn = document.getElementById('btn');
+			// if (btn)
+			// 	btn.onclick = () => {
+			// 		elementsStore.togglePreview();
+
+			// 		const props = Object.keys(componentInstance.$$.props).reduce((obj, key) => {
+			// 			obj[key] = componentInstance.$$.ctx[componentInstance.$$.props[key]];
+			// 			return obj;
+			// 		}, {});
+			// 		console.log(props);
+			// 	};
+		</script>
+	</body>
+</html>
