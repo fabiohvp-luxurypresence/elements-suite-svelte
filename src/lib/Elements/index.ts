@@ -1,4 +1,4 @@
-import BeforeAfter from './BeforeAfter/index.svelte';
+import BeforeAfter from './BeforeAfter/Index.svelte';
 import Bio from './Bio/Index.svelte';
 import BioAlternative from './BioAlternative/Index.svelte';
 import type { IElement } from './IElement';
