@@ -5,11 +5,12 @@
 	import { styleToString } from '../../shared/styleToString';
 
 	export let alt: string;
-	export let value: string;
+	export let props: any = {};
 	export let style: Partial<CSSStyleDeclaration>;
 	export let title: string;
+	export let value: string;
 </script>
 
 <div class="component" style={styleToString(style)} use:draggable use:resizable use:rotable>
-	<img {alt} src={value} {title} style="height: inherit; width: inherit" />
+	<img {alt} src={value} {title} {...props} style="height: inherit; width: inherit" />
 </div>

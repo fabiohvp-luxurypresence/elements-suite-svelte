@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import type { IElement } from '../../Elements/IElement';
+	import type { ISlide } from '../../Slides/ISlide';
 	import Image from '../Image/Image.svelte';
 	import Link from '../Link/Link.svelte';
 	import Text from '../Text/Text.svelte';
@@ -14,32 +14,44 @@
 		width: '200px'
 	};
 
-	const options: IElement[] = [
+	const options: ISlide[] = [
 		{
-			component: Image,
 			key: 'image',
 			name: 'Image',
-			style: { ...DEFAULT_STYLE, height: 'fit-content' },
-			value:
-				'https://image.shutterstock.com/image-photo/mountains-under-mist-morning-amazing-260nw-1725825019.jpg'
+			components: [
+				{
+					component: Image,
+					style: { ...DEFAULT_STYLE, height: 'fit-content' },
+					value:
+						'https://image.shutterstock.com/image-photo/mountains-under-mist-morning-amazing-260nw-1725825019.jpg'
+				}
+			]
 		},
 		{
-			component: Text,
 			key: 'text',
 			name: 'Text',
-			style: { ...DEFAULT_STYLE, height: '80px', textAlign: 'center' },
-			value: 'change me'
+			components: [
+				{
+					component: Text,
+					style: { ...DEFAULT_STYLE, height: '80px', textAlign: 'center' },
+					value: 'change me'
+				}
+			]
 		},
 		{
-			component: Link,
 			key: 'link',
 			name: 'Link',
-			style: { ...DEFAULT_STYLE, height: '80px', textAlign: 'center' },
-			value: 'https://google.com'
+			components: [
+				{
+					component: Link,
+					style: { ...DEFAULT_STYLE, height: '80px', textAlign: 'center' },
+					value: 'https://google.com'
+				}
+			]
 		}
 	];
 
-	function onSelect(option: IElement) {
+	function onSelect(option: ISlide) {
 		dispatch('select', option);
 	}
 </script>

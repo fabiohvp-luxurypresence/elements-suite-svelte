@@ -1,4 +1,4 @@
-import { elements as elementsStore } from '../../Elements/elementsStore';
+import { elements as elementsStore } from '../../Slides/slidesStore';
 import './rotable.css';
 
 export function rotable(element: HTMLElement) {

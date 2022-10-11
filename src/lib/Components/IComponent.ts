@@ -1,7 +1,5 @@
-export interface IElement {
-	name: string;
+export interface IComponent {
 	component: any;
-	key: string;
 	style?: Partial<CSSStyleDeclaration>;
 	value?: string;
 }

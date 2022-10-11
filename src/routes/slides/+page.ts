@@ -1,6 +1,6 @@
-import { elements } from '$lib/Elements';
+import { slides } from '$lib/Slides';
 
 /** @type {import('./$types').PageLoad} */
 export function load() {
-	return { elements };
+	return { slides };
 }

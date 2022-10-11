@@ -1,10 +1,10 @@
 <script lang="ts">
 	import Menu from '../Components/Menu/Menu.svelte';
-	import { elements as elementsStore } from '../Elements/elementsStore';
-	import type { IElement } from '../Elements/IElement';
-	import { DARK_THEME, theme as themeStore } from '../Elements/themeStore';
+	import { elements as elementsStore } from '../Slides/slidesStore';
+	import { DARK_THEME, theme as themeStore } from '../Slides/themeStore';
+	import type { IComponent } from '$lib/Components/IComponent';
 
-	export let elements: IElement[] = [];
+	export let components: IComponent[] = [];
 	export let grid = true;
 
 	let menu = false;
@@ -13,8 +13,8 @@
 		menu = true;
 	}
 
-	function onAdd({ detail }: { detail: IElement }) {
-		elements = [...elements, detail];
+	function onAdd({ detail }: { detail: IComponent }) {
+		components = [...components, detail];
 	}
 
 	function onGrid() {
@@ -45,7 +45,7 @@
 		class:grid
 		style="--grid-gap:{$elementsStore.gridGap}px"
 	>
-		{#each elements as element}
+		{#each components as element}
 			<svelte:component this={element.component} style={element.style} value={element.value} />
 		{/each}
 	</div>

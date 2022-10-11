@@ -1,15 +1,15 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import Editor from '$lib/Editor/Editor.svelte';
+	import type { ISlide } from '$lib/Slides/ISlide';
 
-	const { key } = $page.params;
+	export let data: { slide: ISlide };
 </script>
 
 <nav>
-	<a href="/elements">Back</a>
+	<a href="/slides">Back</a>
 </nav>
 
-<Editor />
+<Editor components={data.slide.components} />
 
 <style>
 	nav {

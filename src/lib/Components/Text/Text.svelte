@@ -6,11 +6,19 @@
 	import { styleToString } from '../../shared/styleToString';
 
 	export let options = {} as Partial<ResizeTextOptions>;
+	export let props: any = {};
 	export let style: Partial<CSSStyleDeclaration> | undefined = {};
 	export let value = '';
 </script>
 
-<div class="component" style={styleToString(style)} use:draggable use:resizable use:rotable>
+<div
+	class="component"
+	style={styleToString(style)}
+	{...props}
+	use:draggable
+	use:resizable
+	use:rotable
+>
 	<div
 		class:invisible={true}
 		contenteditable="true"

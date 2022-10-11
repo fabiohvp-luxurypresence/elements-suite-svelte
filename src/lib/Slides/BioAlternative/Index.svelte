@@ -2,7 +2,7 @@
 	import Link from '../../Components/Link/Link.svelte';
 	import Text from '../../Components/Text/Text.svelte';
 	import Uploader from '../../Uploader/Uploader.svelte';
-	import { elements } from '../elementsStore';
+	import { elements } from '../slidesStore';
 
 	export let content = `Urna tortor ipsum venenatis porttitor nunc id ut purus. Cursus nec quam fringilla pellentesque justo lobortis tempor. Volutpat netus velit sed congue netus tortor. Arcu enim quis lobortis.
 

@@ -1,4 +1,4 @@
-import { elements as elementsStore } from '../../Elements/elementsStore';
+import { elements as elementsStore } from '../../Slides/slidesStore';
 import './dynamic-text.css';
 
 export interface ResizeTextOptions {
