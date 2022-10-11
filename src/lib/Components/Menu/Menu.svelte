@@ -7,6 +7,7 @@
 
 	function onSelect(component: IComponent) {
 		dispatch('select', component);
+		console.log(component);
 	}
 </script>
 

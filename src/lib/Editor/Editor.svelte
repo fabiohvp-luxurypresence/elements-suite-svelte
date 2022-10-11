@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Menu from '../Components/Menu/Menu.svelte';
 	import Sidebar from '../Components/Sidebar/Sidebar.svelte';
+	import PropertiesMenu from '$lib/Components/PropertiesMenu/PropertiesMenu.svelte';
 	import { elements as elementsStore } from '../Slides/slidesStore';
 	import { DARK_THEME, theme as themeStore } from '../Slides/themeStore';
 	import componentTemplates from '$lib/Components';
@@ -9,7 +10,7 @@
 	export let components: IComponent[] = [];
 	export let grid = true;
 
-	let openMenu = false;
+	let openSidebar = false;
 	let openProperties = false;
 	let properties: { [key: string]: any } = {};
 	let selectedComponent: IComponent;
@@ -24,7 +25,6 @@
 	}
 
 	function onComponentClick(component: IComponent, index: number) {
-		openMenu = false;
 		openProperties = true;
 		selectedComponent = component;
 
@@ -47,22 +47,15 @@
 </script>
 
 <div>
-	<button on:click={() => (openMenu = !openMenu)}>Open sidebar</button>
-	<Sidebar isOpen={openMenu || openProperties}>
-		{#if openMenu}
+	<button on:click={() => (openSidebar = !openSidebar)}>Open sidebar</button>
+	<Sidebar
+		isOpen={openSidebar}
+		handleClose={() => ((openSidebar = false), (openProperties = false))}
+	>
+		{#if !openProperties}
 			<Menu on:select={onAdd} />
-		{:else if openProperties}
-			<ul>
-				{#each Object.keys(properties) as key}
-					<li>
-						<span>{key}</span>
-						<svelte:component
-							this={properties[key]}
-							on:change={({ detail }) => onPropertyChange(key, detail)}
-						/>
-					</li>
-				{/each}
-			</ul>
+		{:else}
+			<PropertiesMenu {properties} {onPropertyChange} />
 		{/if}
 	</Sidebar>
 	<div class="editor">
