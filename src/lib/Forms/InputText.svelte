@@ -4,10 +4,7 @@
 	const dispatch = createEventDispatcher();
 	export let value: string;
 
-	$: {
-		dispatch('change', value);
-		console.log(value);
-	}
+	$: dispatch('change', value);
 </script>
 
 <input type="text" bind:value />

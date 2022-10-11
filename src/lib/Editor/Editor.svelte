@@ -5,57 +5,91 @@
 	import { elements as elementsStore } from '../Slides/slidesStore';
 	import { DARK_THEME, theme as themeStore } from '../Slides/themeStore';
 	import componentTemplates from '$lib/Components';
-	import type { IComponent } from '$lib/Components/IComponent';
+	import type IComponent from '$lib/Components/IComponent';
+	import type IFieldsTemplate from '$lib/shared/IFieldsTemplate';
+	import type IFields from '$lib/shared/IFields';
 
 	export let components: IComponent[] = [];
 	export let grid = true;
 
 	let openSidebar = false;
-	let openProperties = false;
-	let properties: { [key: string]: any } = {};
-	let selectedComponent: IComponent;
+	let fieldsTemplate: IFieldsTemplate | null = null;
+	let selectedComponentFields: IFields | null;
+	let selectedComponentIndex: number;
 
 	function onAdd({ detail }: { detail: IComponent }) {
 		components = [...components, detail];
 		console.log(components);
 	}
 
+	function onSidebarClose() {
+		openSidebar = false;
+		resetPropertiesMenu();
+	}
+
 	function onGrid() {
 		grid = !grid;
 	}
 
-	function onComponentClick(component: IComponent, index: number) {
-		openProperties = true;
-		selectedComponent = component;
+	function onComponentClick(index: number) {
+		if (selectedComponentIndex === index) return;
+
+		openSidebar = true;
+		const selectedComponent = components[index];
+		selectedComponentFields = {
+			attr: { ...selectedComponent.fields.attr },
+			style: { ...selectedComponent.fields.style }
+		};
+		selectedComponentIndex = index;
 
 		const componentTemplate = componentTemplates[selectedComponent.name];
-		properties = componentTemplate!.properties;
+		fieldsTemplate = componentTemplate.fieldsTemplate;
 	}
 
-	function onPropertyChange(key: string, value: string) {
-		if (!selectedComponent.style) return;
+	function onOpenComponents() {
+		openSidebar = true;
+		resetPropertiesMenu();
+	}
 
-		const componentIndex = components.findIndex((o) => o === selectedComponent);
-		components[componentIndex] = {
-			...components[componentIndex],
-			style: {
-				...selectedComponent.style,
-				[key]: value
-			}
-		};
+	function onPropertyApply() {
+		selectedComponentFields = components[selectedComponentIndex].fields;
+		onSidebarClose();
+	}
+
+	function onPropertyChange({
+		detail
+	}: {
+		detail: { type: 'attr' | 'style'; key: string; value: any };
+	}) {
+		if (!fieldsTemplate) return;
+
+		const { type, key, value } = detail;
+		components[selectedComponentIndex].fields[type][key] = value;
+		components[selectedComponentIndex] = components[selectedComponentIndex];
+	}
+
+	function resetPropertiesMenu() {
+		fieldsTemplate = null;
+
+		if (selectedComponentFields) {
+			components[selectedComponentIndex].fields = selectedComponentFields;
+			selectedComponentFields = null;
+			selectedComponentIndex = -1;
+		}
 	}
 </script>
 
 <div>
-	<button on:click={() => (openSidebar = !openSidebar)}>Open sidebar</button>
-	<Sidebar
-		isOpen={openSidebar}
-		handleClose={() => ((openSidebar = false), (openProperties = false))}
-	>
-		{#if !openProperties}
-			<Menu on:select={onAdd} />
+	<button on:click={onOpenComponents}>Components</button>
+	<Sidebar isOpen={openSidebar} on:close={onSidebarClose}>
+		{#if fieldsTemplate}
+			<PropertiesMenu
+				fields={fieldsTemplate}
+				on:apply={onPropertyApply}
+				on:change={onPropertyChange}
+			/>
 		{:else}
-			<PropertiesMenu {properties} {onPropertyChange} />
+			<Menu on:select={onAdd} />
 		{/if}
 	</Sidebar>
 	<div class="editor">
@@ -78,9 +112,9 @@
 			{#each components as element, index}
 				<svelte:component
 					this={element.component}
-					style={element.style}
+					style={element.fields.style}
 					value={element.value}
-					on:click={() => onComponentClick(element, index)}
+					on:click={() => onComponentClick(index)}
 				/>
 			{/each}
 		</div>

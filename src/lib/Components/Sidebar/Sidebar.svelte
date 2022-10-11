@@ -1,12 +1,19 @@
 <script lang="ts">
+	import { createEventDispatcher } from 'svelte';
 	import { fly } from 'svelte/transition';
+
+	const dispatch = createEventDispatcher();
+
 	export let isOpen = false;
-	export let handleClose = () => {};
+
+	function onClose() {
+		dispatch('close');
+	}
 </script>
 
 {#if isOpen}
 	<div class="sidebar" transition:fly={{ x: -200, duration: 500 }}>
-		<button class="close" on:click={handleClose}>x</button>
+		<button class="close" on:click={onClose}>x</button>
 		<slot />
 	</div>
 {/if}

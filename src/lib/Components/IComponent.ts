@@ -1,7 +1,8 @@
-export interface IComponent {
+import type IFields from '$lib/shared/IFields';
+
+export default interface IComponent {
 	name: string; //must be unique
-	component: any;
-	properties: { [key: string]: any };
-	style?: Partial<CSSStyleDeclaration>;
+	component: ConstructorOfATypedSvelteComponent;
+	fields: IFields;
 	value?: string;
 }

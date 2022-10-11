@@ -6,7 +6,7 @@
 	import { styleToString } from '../../shared/styleToString';
 
 	export let options = {} as Partial<ResizeTextOptions>;
-	export let props: any = {};
+	export let props: unknown = {};
 	export let style: Partial<CSSStyleDeclaration> | undefined = {};
 	export let target = '_blank';
 	export let value = '';

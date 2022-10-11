@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import componentTemplates from '$lib/Components';
-	import type { IComponent } from '../IComponent';
+	import type IComponent from '../IComponent';
 
 	const dispatch = createEventDispatcher();
 

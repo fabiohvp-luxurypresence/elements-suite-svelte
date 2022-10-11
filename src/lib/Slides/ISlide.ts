@@ -1,4 +1,4 @@
-import type { IComponent } from '$lib/Components/IComponent';
+import type IComponent from '$lib/Components/IComponent';
 
 export interface ISlide {
 	name: string;
