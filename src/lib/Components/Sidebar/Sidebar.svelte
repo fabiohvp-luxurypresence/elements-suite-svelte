@@ -5,9 +5,9 @@
 </script>
 
 {#if isOpen}
-	<div class="sidebar" transition:fly={{ x: -100, duration: 500 }}>
+	<div class="sidebar" transition:fly={{ x: -130, duration: 500 }}>
 		<div>{title}</div>
-		<div>This is a sidebar</div>
+		<slot />
 	</div>
 {/if}
 
@@ -21,14 +21,6 @@
 		height: 100vh;
 		transition: all 1s ease-out;
 		overflow: hidden;
-	}
-	.sidebar.visible {
-		opacity: 1;
-		width: 100px;
-		padding: 1rem;
-	}
-	.sidebar.hidden {
-		opacity: 0;
-		width: 0;
+		width: 130px;
 	}
 </style>

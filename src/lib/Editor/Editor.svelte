@@ -3,30 +3,68 @@
 	import Sidebar from '../Components/Sidebar/Sidebar.svelte';
 	import { elements as elementsStore } from '../Slides/slidesStore';
 	import { DARK_THEME, theme as themeStore } from '../Slides/themeStore';
+	import componentTemplates from '$lib/Components';
 	import type { IComponent } from '$lib/Components/IComponent';
 
 	export let components: IComponent[] = [];
 	export let grid = true;
 
-	let menu = false;
-	let openSidebar = false;
-
-	function add() {
-		menu = true;
-	}
+	let openMenu = false;
+	let openProperties = false;
+	let properties: { [key: string]: any } = {};
+	let selectedComponent: IComponent;
 
 	function onAdd({ detail }: { detail: IComponent }) {
 		components = [...components, detail];
+		console.log(components);
 	}
 
 	function onGrid() {
 		grid = !grid;
 	}
+
+	function onComponentClick(component: IComponent, index: number) {
+		openMenu = false;
+		openProperties = true;
+		selectedComponent = component;
+
+		const componentTemplate = componentTemplates[selectedComponent.name];
+		properties = componentTemplate!.properties;
+	}
+
+	function onPropertyChange(key: string, value: string) {
+		if (!selectedComponent.style) return;
+
+		const componentIndex = components.findIndex((o) => o === selectedComponent);
+		components[componentIndex] = {
+			...components[componentIndex],
+			style: {
+				...selectedComponent.style,
+				[key]: value
+			}
+		};
+	}
 </script>
 
 <div>
-	<div on:click={() => (openSidebar = !openSidebar)}>Open sidebar</div>
-	<Sidebar isOpen={openSidebar} />
+	<button on:click={() => (openMenu = !openMenu)}>Open sidebar</button>
+	<Sidebar isOpen={openMenu || openProperties}>
+		{#if openMenu}
+			<Menu on:select={onAdd} />
+		{:else if openProperties}
+			<ul>
+				{#each Object.keys(properties) as key}
+					<li>
+						<span>{key}</span>
+						<svelte:component
+							this={properties[key]}
+							on:change={({ detail }) => onPropertyChange(key, detail)}
+						/>
+					</li>
+				{/each}
+			</ul>
+		{/if}
+	</Sidebar>
 	<div class="editor">
 		<nav>
 			<button on:click={() => elementsStore.togglePreview()}
@@ -36,12 +74,6 @@
 				>{$themeStore === DARK_THEME ? 'Dark' : 'Light'}</button
 			>
 			<button on:click={onGrid}>{grid ? 'Hide grid' : 'Show grid'}</button>
-
-			<button on:click={add}>Add</button>
-
-			{#if menu}
-				<Menu on:select={onAdd} />
-			{/if}
 		</nav>
 		<div
 			class="editor-container"
@@ -50,8 +82,13 @@
 			class:grid
 			style="--grid-gap:{$elementsStore.gridGap}px"
 		>
-			{#each components as element}
-				<svelte:component this={element.component} style={element.style} value={element.value} />
+			{#each components as element, index}
+				<svelte:component
+					this={element.component}
+					style={element.style}
+					value={element.value}
+					on:click={() => onComponentClick(element, index)}
+				/>
 			{/each}
 		</div>
 	</div>
