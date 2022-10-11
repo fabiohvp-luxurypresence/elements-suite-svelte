@@ -51,7 +51,7 @@
 			</li>
 		{/each}
 	</ul>
-{/if}IFieldsTemplate
+{/if}
 
 <button on:click={onApply}>Apply</button>
 
