@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Menu from '../Components/Menu/Menu.svelte';
+	import Sidebar from '../Components/Sidebar/Sidebar.svelte';
 	import { elements as elementsStore } from '../Slides/slidesStore';
 	import { DARK_THEME, theme as themeStore } from '../Slides/themeStore';
 	import type { IComponent } from '$lib/Components/IComponent';
@@ -8,6 +9,7 @@
 	export let grid = true;
 
 	let menu = false;
+	let openSidebar = false;
 
 	function add() {
 		menu = true;
@@ -22,32 +24,36 @@
 	}
 </script>
 
-<div class="editor">
-	<nav>
-		<button on:click={() => elementsStore.togglePreview()}
-			>{$elementsStore.preview ? 'Editor' : 'Preview'}</button
-		>
-		<button on:click={() => themeStore.toggle()}
-			>{$themeStore === DARK_THEME ? 'Dark' : 'Light'}</button
-		>
-		<button on:click={onGrid}>{grid ? 'Hide grid' : 'Show grid'}</button>
+<div>
+	<div on:click={() => (openSidebar = !openSidebar)}>Open sidebar</div>
+	<Sidebar isOpen={openSidebar} />
+	<div class="editor">
+		<nav>
+			<button on:click={() => elementsStore.togglePreview()}
+				>{$elementsStore.preview ? 'Editor' : 'Preview'}</button
+			>
+			<button on:click={() => themeStore.toggle()}
+				>{$themeStore === DARK_THEME ? 'Dark' : 'Light'}</button
+			>
+			<button on:click={onGrid}>{grid ? 'Hide grid' : 'Show grid'}</button>
 
-		<button on:click={add}>Add</button>
+			<button on:click={add}>Add</button>
 
-		{#if menu}
-			<Menu on:select={onAdd} />
-		{/if}
-	</nav>
-	<div
-		class="editor-container"
-		class:preview-mode={$elementsStore.preview}
-		class:editor-mode={!$elementsStore.preview}
-		class:grid
-		style="--grid-gap:{$elementsStore.gridGap}px"
-	>
-		{#each components as element}
-			<svelte:component this={element.component} style={element.style} value={element.value} />
-		{/each}
+			{#if menu}
+				<Menu on:select={onAdd} />
+			{/if}
+		</nav>
+		<div
+			class="editor-container"
+			class:preview-mode={$elementsStore.preview}
+			class:editor-mode={!$elementsStore.preview}
+			class:grid
+			style="--grid-gap:{$elementsStore.gridGap}px"
+		>
+			{#each components as element}
+				<svelte:component this={element.component} style={element.style} value={element.value} />
+			{/each}
+		</div>
 	</div>
 </div>
 
