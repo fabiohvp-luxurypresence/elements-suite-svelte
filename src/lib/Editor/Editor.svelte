@@ -84,7 +84,8 @@
 	<Sidebar isOpen={openSidebar} on:close={onSidebarClose}>
 		{#if fieldsTemplate}
 			<PropertiesMenu
-				fields={fieldsTemplate}
+				fields={components[selectedComponentIndex].fields}
+				{fieldsTemplate}
 				on:apply={onPropertyApply}
 				on:change={onPropertyChange}
 			/>

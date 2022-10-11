@@ -1,13 +1,15 @@
 <script lang="ts">
-	import type IFields from '$lib/shared/IFieldsTemplate';
+	import type IFieldsTemplate from '$lib/shared/IFieldsTemplate';
+	import type IFields from '$lib/shared/IFields';
 	import { createEventDispatcher } from 'svelte';
 
 	const dispatch = createEventDispatcher();
 
 	export let fields: IFields;
+	export let fieldsTemplate: IFieldsTemplate;
 
-	$: attr = fields.attr;
-	$: style = fields.style;
+	$: attr = fieldsTemplate.attr;
+	$: style = fieldsTemplate.style;
 
 	$: attrKeys = Object.keys(attr);
 	$: styleKeys = Object.keys(style);
@@ -29,7 +31,7 @@
 				<span>{key}</span>
 				<svelte:component
 					this={attr[key].component}
-					value={attr[key].value}
+					value={fields.attr[key]}
 					on:change={({ detail }) => onChange('attr', key, detail)}
 				/>
 			</li>
@@ -45,7 +47,7 @@
 				<span>{key}</span>
 				<svelte:component
 					this={style[key].component}
-					value={style[key].value}
+					value={fields.style[key]}
 					on:change={({ detail }) => onChange('style', key, detail)}
 				/>
 			</li>
