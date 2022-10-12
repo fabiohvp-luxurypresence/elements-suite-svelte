@@ -6,11 +6,11 @@
 
 	export let alt: string;
 	export let props: any = {};
-	export let style: Partial<CSSStyleDeclaration>;
+	export let style: Partial<CSSStyleDeclaration> = {};
 	export let title: string;
 	export let value: string;
 </script>
 
 <div class="component" style={styleToString(style)} use:draggable use:resizable use:rotable>
-	<img {alt} src={value} {title} {...props} style="height: 100%; width: 100%" />
+	<img {alt} src={value} {title} {...props} style="height: 100%; width: 100%; object-fit: cover;" />
 </div>

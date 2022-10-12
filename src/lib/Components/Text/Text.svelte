@@ -10,7 +10,7 @@
 
 	export let options = {} as Partial<ResizeTextOptions>;
 	export let props: any = {};
-	export let style: Partial<CSSStyleDeclaration> | undefined = {};
+	export let style: Partial<CSSStyleDeclaration> = {};
 	export let value = '';
 
 	function onClick(e: MouseEvent) {
@@ -30,6 +30,7 @@
 	<div
 		class:invisible={true}
 		contenteditable="true"
+		style="color: inherit;"
 		bind:innerHTML={value}
 		use:dynamicText={options}
 	/>
