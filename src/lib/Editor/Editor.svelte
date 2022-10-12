@@ -1,18 +1,18 @@
 <script lang="ts">
-	import Menu from '../Components/Menu/Menu.svelte';
-	import Sidebar from '../Components/Sidebar/Sidebar.svelte';
-	import PropertiesMenu from '$lib/Components/PropertiesMenu/PropertiesMenu.svelte';
-	import { elements as elementsStore } from '../Slides/slidesStore';
-	import { DARK_THEME, theme as themeStore } from '../Slides/themeStore';
 	import componentTemplates from '$lib/Components';
+	import ComponentsMenu from '$lib/Components/ComponentsMenu/ComponentsMenu.svelte';
 	import type IComponent from '$lib/Components/IComponent';
-	import type IFieldsTemplate from '$lib/shared/IFieldsTemplate';
+	import PropertiesMenu from '$lib/Components/PropertiesMenu/PropertiesMenu.svelte';
+	import Sidebar from '$lib/Components/Sidebar/Sidebar.svelte';
 	import type IFields from '$lib/shared/IFields';
+	import type IFieldsTemplate from '$lib/shared/IFieldsTemplate';
+	import { elements as elementsStore } from '../Slides/slidesStore';
 
 	export let components: IComponent[] = [];
 	export let grid = true;
+	export let openSidebar = false;
 
-	let openSidebar = false;
+	let editor: HTMLDivElement;
 	let fieldsTemplate: IFieldsTemplate | null = null;
 	let selectedComponentFields: IFields | null;
 	let selectedComponentIndex: number;
@@ -46,11 +46,6 @@
 		fieldsTemplate = componentTemplate.fieldsTemplate;
 	}
 
-	function onOpenComponents() {
-		openSidebar = true;
-		resetPropertiesMenu();
-	}
-
 	function onPropertyApply() {
 		selectedComponentFields = components[selectedComponentIndex].fields;
 		onSidebarClose();
@@ -79,9 +74,12 @@
 	}
 </script>
 
-<div>
-	<button on:click={onOpenComponents} style="margin-top: 2rem">Components</button>
-	<Sidebar isOpen={openSidebar} on:close={onSidebarClose}>
+{#if editor}
+	<Sidebar
+		isOpen={openSidebar}
+		style={{ height: `${editor.clientHeight}px` }}
+		on:close={onSidebarClose}
+	>
 		{#if fieldsTemplate}
 			<PropertiesMenu
 				fields={components[selectedComponentIndex].fields}
@@ -90,11 +88,11 @@
 				on:change={onPropertyChange}
 			/>
 		{:else}
-			<Menu on:select={onAdd} />
+			<ComponentsMenu on:select={onAdd} />
 		{/if}
 	</Sidebar>
-	<div class="editor">
-		<nav>
+{/if}
+<!-- <nav>
 			<button on:click={() => elementsStore.togglePreview()}
 				>{$elementsStore.preview ? 'Editor' : 'Preview'}</button
 			>
@@ -102,37 +100,33 @@
 				>{$themeStore === DARK_THEME ? 'Dark' : 'Light'}</button
 			>
 			<button on:click={onGrid}>{grid ? 'Hide grid' : 'Show grid'}</button>
-		</nav>
-		<div
-			class="editor-container"
-			class:preview-mode={$elementsStore.preview}
-			class:editor-mode={!$elementsStore.preview}
-			class:grid
-			style="--grid-gap:{$elementsStore.gridGap}px"
-		>
-			{#each components as element, index}
-				<svelte:component
-					this={element.component}
-					style={element.fields.style}
-					value={element.value}
-					on:click={() => onComponentClick(index)}
-				/>
-			{/each}
-		</div>
-	</div>
+		</nav> -->
+<div
+	bind:this={editor}
+	class="editor"
+	class:preview-mode={$elementsStore.preview}
+	class:editor-mode={!$elementsStore.preview}
+	class:grid
+	style="--grid-gap:{$elementsStore.gridGap}px"
+>
+	<div class="editor-size" />
+	{#each components as element, index}
+		<svelte:component
+			this={element.component}
+			style={element.fields.style}
+			value={element.value}
+			on:click={() => onComponentClick(index)}
+		/>
+	{/each}
 </div>
 
 <style>
-	.editor {
-		display: grid;
-		grid-template-rows: auto calc(100vh - 1rem);
-		--grid-gap: unset;
+	.editor-size {
+		width: 100vw;
+		height: 100%;
 	}
-
-	nav {
-		display: flex;
-		gap: 1rem;
-		justify-content: center;
+	.editor {
+		--grid-gap: unset;
 	}
 
 	.grid {
