@@ -27,10 +27,6 @@
 		resetPropertiesMenu();
 	}
 
-	function onGrid() {
-		grid = !grid;
-	}
-
 	function onComponentClick(index: number) {
 		if (selectedComponentIndex === index) return;
 
@@ -122,8 +118,10 @@
 
 <style>
 	.editor-size {
-		width: 100vw;
+		max-height: 100%;
+		max-width: 100%;
 		height: 100vh;
+		width: 100vw;
 	}
 	.editor {
 		--grid-gap: unset;

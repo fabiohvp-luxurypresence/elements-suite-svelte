@@ -12,5 +12,5 @@
 </script>
 
 <div class="component" style={styleToString(style)} use:draggable use:resizable use:rotable>
-	<img {alt} src={value} {title} {...props} style="height: inherit; width: inherit" />
+	<img {alt} src={value} {title} {...props} style="height: 100%; width: 100%" />
 </div>
