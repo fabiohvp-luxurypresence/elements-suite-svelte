@@ -24,9 +24,14 @@
 <style>
 	ul {
 		text-decoration: none;
+		padding: 0;
 	}
 
 	li {
-		display: inline-block;
+		list-style: none;
+		margin: 1rem 0;
+	}
+	button {
+		cursor: pointer;
 	}
 </style>

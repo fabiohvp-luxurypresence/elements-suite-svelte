@@ -21,9 +21,9 @@
 <style>
 	.sidebar {
 		display: block;
-		top: 30px;
-		left: 0;
-		border: 1px solid black;
+		top: -2px;
+		left: -1px;
+		border: 1px solid var(--bg-color-inverted);
 		position: absolute;
 		height: 100vh;
 		transition: all 1s ease-out;
@@ -31,7 +31,7 @@
 		width: 12rem;
 		padding: 2rem 1rem;
 		z-index: 1;
-		background-color: #fff;
+		background-color: var(--bg-color);
 	}
 	.close {
 		position: absolute;
@@ -41,5 +41,6 @@
 		font-size: 24px;
 		background-color: transparent;
 		border: none;
+		color: var(--bg-color-inverted);
 	}
 </style>

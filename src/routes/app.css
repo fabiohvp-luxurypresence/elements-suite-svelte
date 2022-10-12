@@ -178,6 +178,12 @@ body {
 	padding: 0 0;
 }
 
+button {
+	background-color: inherit;
+	color: var(--primary-color);
+	border-color: var(--bg-color-inverted);
+}
+
 * {
 	color: var(--primary-color);
 }
@@ -192,8 +198,7 @@ body {
 	outline: 1px solid var(--outline-color);
 	color: var(--primary-color);
 	display: flex;
-	height: 100%;
-	margin: auto auto;
+	margin: 2.5rem auto;
 	position: relative;
 	width: calc(100vh / 0.625);
 }

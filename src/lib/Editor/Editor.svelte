@@ -80,7 +80,7 @@
 </script>
 
 <div>
-	<button on:click={onOpenComponents}>Components</button>
+	<button on:click={onOpenComponents} style="margin-top: 2rem">Components</button>
 	<Sidebar isOpen={openSidebar} on:close={onSidebarClose}>
 		{#if fieldsTemplate}
 			<PropertiesMenu
@@ -125,7 +125,7 @@
 <style>
 	.editor {
 		display: grid;
-		grid-template-rows: 1rem calc(100vh - 1rem);
+		grid-template-rows: auto calc(100vh - 1rem);
 		--grid-gap: unset;
 	}
 
