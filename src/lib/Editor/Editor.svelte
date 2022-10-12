@@ -123,7 +123,7 @@
 <style>
 	.editor-size {
 		width: 100vw;
-		height: 100%;
+		height: 100vh;
 	}
 	.editor {
 		--grid-gap: unset;
