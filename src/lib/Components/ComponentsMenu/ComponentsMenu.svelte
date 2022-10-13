@@ -8,8 +8,6 @@
 	function onSelect(component: IComponent) {
 		dispatch('select', component);
 	}
-
-	console.log(componentTemplates);
 </script>
 
 <div class="components-list">

@@ -36,7 +36,7 @@
 		border: 1px solid var(--bg-color);
 		height: 100%;
 		left: -1px;
-		overflow: hidden;
+		overflow: auto;
 		position: absolute;
 		transition: all 1s ease-out;
 		width: 12rem;

@@ -61,7 +61,7 @@ export default {
 		element: Image,
 		fields: {
 			attr: {},
-			style: { ...DEFAULT_STYLE, height: 'fit-content' }
+			style: { ...DEFAULT_STYLE, height: '144px' }
 		},
 		fieldsTemplate: textFields,
 		value:

@@ -6,6 +6,7 @@
 	import Sidebar from '$lib/Components/Sidebar/Sidebar.svelte';
 	import type IFields from '$lib/shared/IFields';
 	import type IFieldsTemplate from '$lib/shared/IFieldsTemplate';
+	import { styleToInt } from '$lib/shared/styleToInt';
 	import { onMount } from 'svelte';
 	import { elements as elementsStore } from '../Slides/slidesStore';
 	import { theme as themeStore, DARK_THEME } from '../Slides/themeStore';
@@ -19,7 +20,7 @@
 	let previousContainerRect: DOMRect;
 	let resizer: ResizeObserver;
 	let selectedComponentFields: IFields | null;
-	let selectedComponentIndex: number;
+	let selectedComponentIndex: number = -1;
 
 	onMount(() => {
 		resizer = new ResizeObserver(onResize);
@@ -30,31 +31,9 @@
 		};
 	});
 
-	function onResize([container]: ResizeObserverEntry[]) {
-		if (previousContainerRect) {
-			const diffHeight = Math.round(previousContainerRect.height - container.contentRect.height);
-			const diffWidth = Math.round(previousContainerRect.width - container.contentRect.width);
-			console.log(diffHeight);
-		}
-		previousContainerRect = container.contentRect;
-		// for (let entry of entries) {
-		//   console.log(entry)
-		//   // entry object properties:
-		//   // borderBoxSize
-		//   // contentBoxSize
-		//   // contentRect
-		//   // devicePixelContentBoxSize
-		//   // target
-		// }
-	}
-
-	function onAdd({ detail }: { detail: IComponent }) {
-		components = [...components, detail];
-	}
-
-	function onSidebarClose() {
-		openSidebar = false;
-		resetPropertiesMenu();
+	function onAdd({ detail: component }: { detail: IComponent }) {
+		const componentTemplate = componentTemplates[component.name];
+		components = [...components, { ...component, fields: { ...componentTemplate.fields } }];
 	}
 
 	function onComponentClick(index: number) {
@@ -72,6 +51,36 @@
 		fieldsTemplate = componentTemplate.fieldsTemplate;
 	}
 
+	function onGrid() {
+		grid = !grid;
+	}
+
+	function moveComponent(component: IComponent, direction: 'left' | 'top', value: number) {
+		const currentValue = styleToInt(component.fields.style[direction].toString());
+		value = currentValue + value;
+		component.fields.style[direction] = `${value}px`;
+	}
+
+	function onKeypress(e: KeyboardEvent) {
+		if (selectedComponentIndex === -1) return true;
+		if (e.target !== document.body) return true;
+
+		if (e.code === 'Delete') {
+			const index = selectedComponentIndex;
+			resetPropertiesMenu();
+			components.splice(index, 1);
+		} else if (e.code === 'ArrowDown') {
+			moveComponent(components[selectedComponentIndex], 'top', 1);
+		} else if (e.code === 'ArrowUp') {
+			moveComponent(components[selectedComponentIndex], 'top', -1);
+		} else if (e.code === 'ArrowLeft') {
+			moveComponent(components[selectedComponentIndex], 'left', -1);
+		} else if (e.code === 'ArrowRight') {
+			moveComponent(components[selectedComponentIndex], 'left', 1);
+		}
+		components[selectedComponentIndex] = components[selectedComponentIndex];
+	}
+
 	function onPropertyApply() {
 		selectedComponentFields = { ...components[selectedComponentIndex].fields };
 		onSidebarClose();
@@ -86,7 +95,30 @@
 
 		const { type, key, value } = detail;
 		components[selectedComponentIndex].fields[type][key] = value;
-		//components[selectedComponentIndex] = components[selectedComponentIndex];
+	}
+
+	function onResize([container]: ResizeObserverEntry[]) {
+		if (previousContainerRect) {
+			const diffHeight = Math.round(container.contentRect.height - previousContainerRect.height);
+			const diffWidth = Math.round(container.contentRect.width - previousContainerRect.width);
+
+			for (const component of components) {
+				let height = styleToInt(component.fields.style.height.toString()) + diffHeight;
+				let width = styleToInt(component.fields.style.width.toString()) + diffWidth;
+
+				if (height < 1) height = 1;
+				if (width < 1) width = 1;
+				component.fields.style.height = `${height}px`;
+				component.fields.style.width = `${width}px`;
+			}
+			components = components;
+		}
+		previousContainerRect = container.contentRect;
+	}
+
+	function onSidebarClose() {
+		openSidebar = false;
+		resetPropertiesMenu();
 	}
 
 	function resetPropertiesMenu() {
@@ -98,11 +130,9 @@
 			selectedComponentIndex = -1;
 		}
 	}
-
-	function onGrid() {
-		grid = !grid;
-	}
 </script>
+
+<svelte:window on:keydown={onKeypress} />
 
 {#if editor}
 	<Sidebar isOpen={openSidebar} on:close={onSidebarClose}>
@@ -118,7 +148,7 @@
 		{/if}
 	</Sidebar>
 {/if}
-<diV class="nav-container">
+<div class="nav-container">
 	<nav>
 		<button on:click={() => elementsStore.togglePreview()}
 			>{$elementsStore.preview ? 'Editor' : 'Preview'}</button
@@ -128,7 +158,7 @@
 		>
 		<button on:click={onGrid}>{grid ? 'Hide grid' : 'Show grid'}</button>
 	</nav>
-</diV>
+</div>
 <div
 	bind:this={editor}
 	class="editor"
@@ -138,7 +168,7 @@
 	style="--grid-gap:{$elementsStore.gridGap}px"
 >
 	<div class="editor-size" />
-	{#each components as component, index}
+	{#each components as component, index (index)}
 		<svelte:component
 			this={component.element}
 			bind:attr={component.fields.attr}

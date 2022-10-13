@@ -36,7 +36,7 @@
 <style>
 	.goback {
 		display: inline-block;
-		margin: 1rem 0.3rem 0;
+		margin: 0 0.3rem 0;
 		transition: transform 0.5s, box-shadow 1s;
 	}
 	.page-container {
