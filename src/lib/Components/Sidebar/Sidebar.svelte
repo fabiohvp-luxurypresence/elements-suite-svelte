@@ -1,4 +1,5 @@
 <script lang="ts">
+	import FaRegWindowClose from 'svelte-icons/fa/FaRegWindowClose.svelte';
 	import { styleToString } from '$lib/shared/styleToString';
 	import { createEventDispatcher } from 'svelte';
 	import { fly } from 'svelte/transition';
@@ -15,7 +16,9 @@
 
 {#if isOpen}
 	<div class="sidebar" style={styleToString(style)} transition:fly={{ x: -200, duration: 500 }}>
-		<button class="close" on:click={onClose}>x</button>
+		<button class="close" on:click={onClose}>
+			<FaRegWindowClose />
+		</button>
 		<div class="content">
 			<slot />
 		</div>
@@ -27,13 +30,14 @@
 		padding: 10px 10px;
 	}
 	.sidebar {
+		border-top-right-radius: 5px;
+		border-bottom-right-radius: 5px;
 		background-color: var(--bg-color);
-		border: 1px solid var(--bg-color-inverted);
+		border: 1px solid var(--bg-color);
 		height: 100%;
 		left: -1px;
 		overflow: hidden;
 		position: absolute;
-		top: -2px;
 		transition: all 1s ease-out;
 		width: 12rem;
 		z-index: 1;
@@ -47,5 +51,7 @@
 		position: absolute;
 		right: 10px;
 		top: 10px;
+		width: 30px;
+		padding: 0;
 	}
 </style>

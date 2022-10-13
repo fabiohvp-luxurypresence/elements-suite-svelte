@@ -1,9 +1,14 @@
 import Image from '$lib/Components/Image/Image.svelte';
+import ImageIcon from 'svelte-icons/io/IoIosImage.svelte';
 import Link from '$lib/Components/Link/Link.svelte';
+import LinkIcon from 'svelte-icons/md/MdLink.svelte';
 import Text from '$lib/Components/Text/Text.svelte';
+import TextIcon from 'svelte-icons/md/MdShortText.svelte';
 import InputText from '$lib/Forms/InputText.svelte';
 import Line from '$lib/Components/Shapes/Line/Line.svelte';
+import LineIcon from 'svelte-icons/md/MdLinearScale.svelte';
 import Rectangle from '$lib/Components/Shapes/Rectangle/Rectangle.svelte';
+import RectangleIcon from 'svelte-icons/md/MdCropSquare.svelte';
 import type IFieldsTemplate from '$lib/shared/IFieldsTemplate';
 import type IComponent from './IComponent';
 
@@ -68,6 +73,7 @@ export type IComponentTemplate = IComponent & {
 export default {
 	Image: {
 		name: 'Image',
+		icon: ImageIcon,
 		element: Image,
 		fields: {
 			attr: {},
@@ -79,6 +85,7 @@ export default {
 	},
 	Text: {
 		name: 'Text',
+		icon: TextIcon,
 		element: Text,
 		fields: {
 			attr: {},
@@ -89,6 +96,7 @@ export default {
 	},
 	Link: {
 		name: 'Link',
+		icon: LinkIcon,
 		element: Link,
 		fields: {
 			attr: {},
@@ -100,6 +108,7 @@ export default {
 	// Shapes
 	Line: {
 		name: 'Line',
+		icon: LineIcon,
 		element: Line,
 		fields: {
 			attr: {},
@@ -115,6 +124,7 @@ export default {
 	},
 	Rectangle: {
 		name: 'Rectangle',
+		icon: RectangleIcon,
 		element: Rectangle,
 		fields: {
 			attr: {},

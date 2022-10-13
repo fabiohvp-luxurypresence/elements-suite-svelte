@@ -171,7 +171,9 @@
 		@apply dark;
 	}
 }
-
+html {
+	height: 100%;
+}
 body {
 	background-color: var(--bg-color);
 	margin: 0 0;
