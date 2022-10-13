@@ -48,7 +48,7 @@ export function dynamicText(element: HTMLElement, options: Partial<ResizeTextOpt
 
 	const onResizeWindow = () => processDynamicText(element, options);
 
-	element.parentElement?.classList.add('dynamic-text-container');
+	element.parentElement!.classList.add('dynamic-text-container');
 	element.classList.add('dynamic-text');
 
 	element.addEventListener('click', onClick);

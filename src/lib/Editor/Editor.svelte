@@ -13,13 +13,12 @@
 	export let openSidebar = false;
 
 	let editor: HTMLDivElement;
-	let fieldsTemplate: IFieldsTemplate | null = null;
+	let fieldsTemplate: IFieldsTemplate | null;
 	let selectedComponentFields: IFields | null;
 	let selectedComponentIndex: number;
 
 	function onAdd({ detail }: { detail: IComponent }) {
 		components = [...components, detail];
-		console.log(components);
 	}
 
 	function onSidebarClose() {
@@ -43,7 +42,7 @@
 	}
 
 	function onPropertyApply() {
-		selectedComponentFields = components[selectedComponentIndex].fields;
+		selectedComponentFields = { ...components[selectedComponentIndex].fields };
 		onSidebarClose();
 	}
 
@@ -56,14 +55,15 @@
 
 		const { type, key, value } = detail;
 		components[selectedComponentIndex].fields[type][key] = value;
-		components[selectedComponentIndex] = components[selectedComponentIndex];
+		//components[selectedComponentIndex] = components[selectedComponentIndex];
 	}
 
 	function resetPropertiesMenu() {
+		console.log('reset');
 		fieldsTemplate = null;
 
 		if (selectedComponentFields) {
-			components[selectedComponentIndex].fields = selectedComponentFields;
+			components[selectedComponentIndex].fields = { ...selectedComponentFields };
 			selectedComponentFields = null;
 			selectedComponentIndex = -1;
 		}
@@ -106,11 +106,12 @@
 	style="--grid-gap:{$elementsStore.gridGap}px"
 >
 	<div class="editor-size" />
-	{#each components as element, index}
+	{#each components as component, index}
 		<svelte:component
-			this={element.component}
-			style={element.fields.style}
-			value={element.value}
+			this={component.element}
+			attr={component.fields.attr}
+			style={component.fields.style}
+			value={component.value}
 			on:click={() => onComponentClick(index)}
 		/>
 	{/each}

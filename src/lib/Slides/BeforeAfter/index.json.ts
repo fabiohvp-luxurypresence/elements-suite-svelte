@@ -14,10 +14,10 @@ export default {
 					top: '2.44%',
 					height: '14.81%',
 					width: '23.11%',
-					'z-index': 1
+					zIndex: 1
 				}
 			},
-			component: Text,
+			element: Text,
 			name: 'Text',
 			value: 'Welcome'
 		},
@@ -31,7 +31,7 @@ export default {
 					width: '50%'
 				}
 			},
-			component: Image,
+			element: Image,
 			name: 'Image',
 			value:
 				'https://res.cloudinary.com/luxuryp/images/f_auto,q_auto/c20g9vrvdws5sdlvfrbm/living-room'
@@ -44,10 +44,10 @@ export default {
 					top: '2.44%',
 					height: '14.81%',
 					width: '23.11%',
-					'z-index': 1
+					zIndex: 1
 				}
 			},
-			component: Text,
+			element: Text,
 			name: 'Text',
 			value: 'Welcome'
 		},
@@ -61,7 +61,7 @@ export default {
 					width: '50%'
 				}
 			},
-			component: Image,
+			element: Image,
 			name: 'Image',
 			value:
 				'https://res.cloudinary.com/luxuryp/images/w_1920,c_limit,f_auto,q_auto/vlpqb06o3qdhi9nubjm3/stocksy_txp4c549b86uif300_large_3575119'

@@ -17,7 +17,7 @@ export default {
 					width: '37.78%'
 				}
 			},
-			component: Text,
+			element: Text,
 			name: 'Text',
 			value: 'Jane Williams'
 		},
@@ -31,7 +31,7 @@ export default {
 					width: '32.42%'
 				}
 			},
-			component: Text,
+			element: Text,
 			name: 'Text',
 			value:
 				'Urna tortor ipsum venenatis porttitor nunc id ut purus. Cursus nec quam fringilla pellentesque justo lobortis tempor. Volutpat netus velit sed congue netus tortor. Arcu enim quis lobortis.\r\n\r\nAt consectetur sit fames enim id amet nisl vulputate. Cras mi facilisis id mauris, cursus nunc turpis nunc. Nisl, amet ac gravida etiam at vel donec consequat. Aliquam et tristique lacus.'
@@ -46,7 +46,7 @@ export default {
 					width: '11.11%'
 				}
 			},
-			component: Link,
+			element: Link,
 			name: 'Link',
 			value: 'luxurypresence.com'
 		},
@@ -60,7 +60,7 @@ export default {
 					width: '50%'
 				}
 			},
-			component: Image,
+			element: Image,
 			name: 'Image',
 			value:
 				'https://res.cloudinary.com/luxuryp/images/f_auto,q_auto/etmgfhcf2n0ugqpkcqb9/stocksy_txp4c549b86uif300_large_3610229'

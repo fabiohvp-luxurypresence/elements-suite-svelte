@@ -19,7 +19,7 @@ export default {
 					'text-align': ''
 				}
 			},
-			component: Text,
+			element: Text,
 			name: 'Text',
 			value: 'Jane Mills'
 		},
@@ -35,7 +35,7 @@ export default {
 					'text-align': ''
 				}
 			},
-			component: Link,
+			element: Link,
 			name: 'Link',
 			value: 'luxurypresence.com'
 		},
@@ -51,7 +51,7 @@ export default {
 					'text-align': ''
 				}
 			},
-			component: Text,
+			element: Text,
 			name: 'Text',
 			value: '15th Lane Bay,<br>SA 155123'
 		},
@@ -67,7 +67,7 @@ export default {
 					'text-align': ''
 				}
 			},
-			component: Text,
+			element: Text,
 			name: 'Text',
 			value: 'Prepared for Joey Williams'
 		},
@@ -83,7 +83,7 @@ export default {
 					'text-align': ''
 				}
 			},
-			component: Image,
+			element: Image,
 			name: 'Image',
 			value:
 				'https://res.cloudinary.com/luxuryp/images/w_1920,c_limit,f_auto,q_auto/vennjafmxuycijiedp6j/stocksy_txp4c549b86uif300_large_3582078'

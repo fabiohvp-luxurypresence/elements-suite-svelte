@@ -72,6 +72,10 @@ export function draggable(element: HTMLElement, options: Partial<DraggableOption
 	});
 
 	return {
+		update: () => {
+			console.log('update');
+			element.classList.add('draggable');
+		},
 		destroy() {
 			elementsStoreUnsubscriber();
 			window.removeEventListener('mousemove', onMouseMove);

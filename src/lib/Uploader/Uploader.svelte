@@ -24,5 +24,6 @@
 <Dropzone
 	on:drop={handleFilesSelect}
 	{...options}
-	containerStyles="background: none;border:none;cursor:pointer;height:100%;"><span /></Dropzone
->
+	containerStyles="background: none;border:none;cursor:pointer;height:100%;"
+	><span />
+</Dropzone>

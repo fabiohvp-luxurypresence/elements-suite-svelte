@@ -19,7 +19,7 @@ export default {
 					'text-align': ''
 				}
 			},
-			component: Text,
+			element: Text,
 			name: 'Text',
 			value: '15th Lane<br>Bay, SA 155123'
 		},
@@ -35,7 +35,7 @@ export default {
 					'text-align': ''
 				}
 			},
-			component: Text,
+			element: Text,
 			name: 'Text',
 			value: 'Prepared for Joey Miranda'
 		},
@@ -51,7 +51,7 @@ export default {
 					'text-align': ''
 				}
 			},
-			component: Image,
+			element: Image,
 			name: 'Image',
 			value:
 				'https://res.cloudinary.com/luxuryp/images/w_1920,c_limit,f_auto,q_auto/thyclgpcfgnndae1f7jv/stocksy_txp4c549b86uif300_large_3582078_1'
@@ -64,11 +64,11 @@ export default {
 					top: '93.15%',
 					height: '3.55%',
 					width: '47.25%',
-					'font-size': '',
-					'text-align': ''
+					fontSize: '',
+					textAlign: ''
 				}
 			},
-			component: Text,
+			element: Text,
 			name: 'Text',
 			value: 'Jane Williams'
 		},
@@ -80,11 +80,11 @@ export default {
 					top: '93.15%',
 					height: '3.55%',
 					width: '10.26%',
-					'font-size': '',
-					'text-align': ''
+					fontSize: '',
+					textAlign: ''
 				}
 			},
-			component: Link,
+			element: Link,
 			name: 'Link',
 			value: 'luxurypresence.com'
 		}

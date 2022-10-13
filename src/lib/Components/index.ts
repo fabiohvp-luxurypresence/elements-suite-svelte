@@ -68,7 +68,7 @@ export type IComponentTemplate = IComponent & {
 export default {
 	Image: {
 		name: 'Image',
-		component: Image,
+		element: Image,
 		fields: {
 			attr: {},
 			style: { ...DEFAULT_STYLE, height: 'fit-content' }
@@ -79,7 +79,7 @@ export default {
 	},
 	Text: {
 		name: 'Text',
-		component: Text,
+		element: Text,
 		fields: {
 			attr: {},
 			style: { ...DEFAULT_STYLE, height: '80px', textAlign: 'center' }
@@ -89,7 +89,7 @@ export default {
 	},
 	Link: {
 		name: 'Link',
-		component: Link,
+		element: Link,
 		fields: {
 			attr: {},
 			style: {}
@@ -100,7 +100,7 @@ export default {
 	// Shapes
 	Line: {
 		name: 'Line',
-		component: Line,
+		element: Line,
 		fields: {
 			attr: {},
 			style: {
@@ -115,7 +115,7 @@ export default {
 	},
 	Rectangle: {
 		name: 'Rectangle',
-		component: Rectangle,
+		element: Rectangle,
 		fields: {
 			attr: {},
 			style: { ...DEFAULT_STYLE }

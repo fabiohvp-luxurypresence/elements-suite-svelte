@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { IAttribute } from '$lib/shared/IAttribute';
 	import { createEventDispatcher } from 'svelte';
 	import { draggable } from '../../shared/draggable/draggable';
 	import { resizable } from '../../shared/resizable/resizable';
@@ -8,7 +9,7 @@
 	const dispatch = createEventDispatcher();
 
 	export let alt: string;
-	export let props: any = {};
+	export let attr: IAttribute = {};
 	export let style: Partial<CSSStyleDeclaration> = {};
 	export let title: string;
 	export let value: string;
@@ -27,5 +28,5 @@
 	use:resizable
 	use:rotable
 >
-	<img {alt} src={value} {title} {...props} style="height: 100%; width: 100%; object-fit: cover;" />
+	<img {alt} src={value} {title} style="height: 100%; width: 100%; object-fit: cover;" />
 </div>

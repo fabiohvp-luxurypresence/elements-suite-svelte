@@ -17,7 +17,7 @@ export default {
 					width: '32.57%'
 				}
 			},
-			component: Image,
+			element: Image,
 			name: 'Image',
 			value:
 				'https://res.cloudinary.com/luxuryp/images/f_auto,q_auto/etmgfhcf2n0ugqpkcqb9/stocksy_txp4c549b86uif300_large_3610229'
@@ -32,7 +32,7 @@ export default {
 					width: '46.04%'
 				}
 			},
-			component: Text,
+			element: Text,
 			name: 'Text',
 			value: 'Meet \r\nJane'
 		},
@@ -46,7 +46,7 @@ export default {
 					width: '46.04%'
 				}
 			},
-			component: Text,
+			element: Text,
 			name: 'Text',
 			value:
 				'Like many Floridians, Jane fell in love with the opportunities to the south and has become an expert at assisting others with their own relocations to the South Florida area. Her industry specialties include waterfront condos, homes for boat owners, foreclosure investments, estate sales, family relocations and pre-retirement investments.\r\nWith 16 years of experience in the real estate industry, Jane has been through multiple market cycles as an agent, buyer, and investor, and has a deep understanding for the often-complicated process that her clients will encounter. '
@@ -61,7 +61,7 @@ export default {
 					width: '86.95%'
 				}
 			},
-			component: Link,
+			element: Link,
 			name: 'Link',
 			value: 'luxurypresence.com'
 		}

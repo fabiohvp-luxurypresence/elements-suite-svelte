@@ -20,7 +20,7 @@ elements.forEach((element) => {
 		fields: { attr: {}, style },
 		component: component,
 		name: component,
-		value: value.replace(/\r\n/, '<br>')
+		value
 	});
 });
 
@@ -57,21 +57,21 @@ function getStyle(slide, element) {
 	left = (left * 100) / slideCorrectWidth;
 	top = (top * 100) / slideCorrectHeight;
 
-	const style = window.getComputedStyle(element);
-
-	return {
+	const style = {
 		left: `${round(left)}%`,
 		top: `${round(top)}%`,
 		height: `${round(height)}%`,
-		width: `${round(width)}%`,
-		'font-size': style.fontSize,
-		'text-align': style.textAlign
+		width: `${round(width)}%`
 	};
+
+	if (element.style.fontSize) {
+		style['fontSize'] = element.style.fontSize;
+	}
+	if (element.style.textAlign) {
+		style['textAlign'] = element.style.textAlign;
+	}
+	return style;
 }
-
-// function getRelativeValue(slideValue, elementValue) {
-
-// }
 
 function round(value) {
 	return Math.round(value * 100) / 100;

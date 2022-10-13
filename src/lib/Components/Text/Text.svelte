@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { IAttribute } from '$lib/shared/IAttribute';
 	import { createEventDispatcher } from 'svelte';
 	import { draggable } from '../../shared/draggable/draggable';
 	import { dynamicText, type ResizeTextOptions } from '../../shared/dynamicText/dynamicText';
@@ -8,9 +9,9 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let options = {} as Partial<ResizeTextOptions>;
-	export let props: any = {};
-	export let style: Partial<CSSStyleDeclaration> = {};
+	export let attr: IAttribute = {};
+	export let options: Partial<ResizeTextOptions> = {};
+	export let style: Partial<CSSStyleDeclaration>;
 	export let value = '';
 
 	function onClick(e: MouseEvent) {
@@ -18,10 +19,10 @@
 	}
 </script>
 
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
 	class="component"
 	style={styleToString(style)}
-	{...props}
 	on:click={onClick}
 	use:draggable
 	use:resizable
