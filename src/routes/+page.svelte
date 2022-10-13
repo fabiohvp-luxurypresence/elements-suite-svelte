@@ -9,6 +9,3 @@
 <section>
 	<a href="/slides">Slides</a>
 </section>
-
-<style>
-</style>

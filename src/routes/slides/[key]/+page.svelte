@@ -12,7 +12,7 @@
 	}
 </script>
 
-<div class="container">
+<div class="page-container">
 	<div class="goback">
 		<a href="/slides">
 			<div class="icon">
@@ -21,35 +21,36 @@
 		</a>
 	</div>
 
-	<div class="editor-container">
+	<div class="slide-container">
 		<div class="menu-icon">
 			<button on:click={onOpenComponents}>
 				<div class="icon"><MdMenu /></div>
 			</button>
 		</div>
-		<Editor components={data.slide.components} bind:openSidebar />
+		<div class="editor-container">
+			<Editor components={data.slide.components} bind:openSidebar />
+		</div>
 	</div>
 </div>
 
 <style>
 	.goback {
+		display: inline-block;
 		margin: 1rem 0.3rem 0;
 		transition: transform 0.5s, box-shadow 1s;
 	}
-	.container {
-		display: grid;
-		flex-direction: column;
-		grid-template-rows: auto auto;
-	}
-	.editor-container {
-		height: 100%;
+	.page-container {
 		background-color: #efefef;
+		height: 100vh;
+	}
+	.slide-container {
 		align-items: center;
 		display: flex;
 		justify-content: center;
-		margin-top: 2rem;
-		padding-top: 2rem;
 		position: relative;
+	}
+	.editor-container {
+		margin-top: 1rem;
 	}
 	.menu-icon {
 		position: absolute;
@@ -62,11 +63,11 @@
 		cursor: pointer;
 		transition: transform 0.5s, box-shadow 1s;
 	}
+	.icon:hover {
+		transform: scale(1.2) perspective(0px);
+	}
 	button {
 		border: none;
 		transition: transform 0.5s;
-	}
-	.icon:hover {
-		transform: scale(1.2) perspective(0px);
 	}
 </style>
