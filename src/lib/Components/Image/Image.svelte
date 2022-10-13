@@ -19,10 +19,10 @@
 	}
 </script>
 
-<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-	class="component"
+	class:component={true}
 	style={styleToString(style)}
+	{...attr}
 	on:click={onClick}
 	use:draggable
 	use:resizable

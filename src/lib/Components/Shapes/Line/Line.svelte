@@ -16,7 +16,7 @@
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div
-	class="component"
+	class:component={true}
 	style={styleToString(style)}
 	on:click={onClick}
 	use:draggable
