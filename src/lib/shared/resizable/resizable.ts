@@ -90,11 +90,16 @@ export function resizable(element: HTMLElement, options: Partial<ResizableOption
 			coordinates = originalCoordinates;
 			return;
 		}
-
-		element.style.left = `${coordinates.left}px`;
-		element.style.height = `${coordinates.height}px`;
-		element.style.width = `${coordinates.width}px`;
-		element.style.top = `${coordinates.top}px`;
+		element.dispatchEvent(
+			new CustomEvent('styleUpdate', {
+				detail: {
+					left: `${coordinates.left}px`,
+					height: `${coordinates.height}px`,
+					top: `${coordinates.top}px`,
+					width: `${coordinates.width}px`
+				}
+			})
+		);
 	}
 
 	function onMouseUp() {

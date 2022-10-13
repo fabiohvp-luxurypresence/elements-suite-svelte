@@ -12,6 +12,10 @@
 	function onClick(e: MouseEvent) {
 		dispatch('click', e);
 	}
+
+	function onStyleUpdate({ detail }: { detail: Partial<CSSStyleDeclaration> }) {
+		style = { ...style, ...detail };
+	}
 </script>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -19,6 +23,7 @@
 	class:component={true}
 	style={styleToString(style)}
 	on:click={onClick}
+	on:styleUpdate={onStyleUpdate}
 	use:draggable
 	use:resizable
 	use:rotable

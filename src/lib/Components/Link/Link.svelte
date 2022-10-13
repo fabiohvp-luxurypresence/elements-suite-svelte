@@ -9,14 +9,18 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let options = {} as Partial<ResizeTextOptions>;
 	export let attr: IAttribute = {};
+	export let options = {} as Partial<ResizeTextOptions>;
 	export let style: Partial<CSSStyleDeclaration> = {};
 	export let target = '_blank';
 	export let value = '';
 
 	function onClick(e: MouseEvent) {
 		dispatch('click', e);
+	}
+
+	function onStyleUpdate({ detail }: { detail: Partial<CSSStyleDeclaration> }) {
+		style = { ...style, ...detail };
 	}
 </script>
 
@@ -25,6 +29,7 @@
 	style={styleToString(style)}
 	{...attr}
 	on:click={onClick}
+	on:styleUpdate={onStyleUpdate}
 	use:draggable
 	use:resizable
 	use:rotable

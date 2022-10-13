@@ -6,6 +6,7 @@
 	import Sidebar from '$lib/Components/Sidebar/Sidebar.svelte';
 	import type IFields from '$lib/shared/IFields';
 	import type IFieldsTemplate from '$lib/shared/IFieldsTemplate';
+	import { onMount } from 'svelte';
 	import { elements as elementsStore } from '../Slides/slidesStore';
 	import { theme as themeStore, DARK_THEME } from '../Slides/themeStore';
 
@@ -15,8 +16,37 @@
 
 	let editor: HTMLDivElement;
 	let fieldsTemplate: IFieldsTemplate | null;
+	let previousContainerRect: DOMRect;
+	let resizer: ResizeObserver;
 	let selectedComponentFields: IFields | null;
 	let selectedComponentIndex: number;
+
+	onMount(() => {
+		resizer = new ResizeObserver(onResize);
+		resizer.observe(editor);
+
+		return () => {
+			resizer.unobserve(editor);
+		};
+	});
+
+	function onResize([container]: ResizeObserverEntry[]) {
+		if (previousContainerRect) {
+			const diffHeight = Math.round(previousContainerRect.height - container.contentRect.height);
+			const diffWidth = Math.round(previousContainerRect.width - container.contentRect.width);
+			console.log(diffHeight);
+		}
+		previousContainerRect = container.contentRect;
+		// for (let entry of entries) {
+		//   console.log(entry)
+		//   // entry object properties:
+		//   // borderBoxSize
+		//   // contentBoxSize
+		//   // contentRect
+		//   // devicePixelContentBoxSize
+		//   // target
+		// }
+	}
 
 	function onAdd({ detail }: { detail: IComponent }) {
 		components = [...components, detail];
@@ -60,7 +90,6 @@
 	}
 
 	function resetPropertiesMenu() {
-		console.log('reset');
 		fieldsTemplate = null;
 
 		if (selectedComponentFields) {
@@ -112,9 +141,9 @@
 	{#each components as component, index}
 		<svelte:component
 			this={component.element}
-			attr={component.fields.attr}
-			style={component.fields.style}
-			value={component.value}
+			bind:attr={component.fields.attr}
+			bind:style={component.fields.style}
+			bind:value={component.value}
 			on:click={() => onComponentClick(index)}
 		/>
 	{/each}

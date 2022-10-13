@@ -9,8 +9,7 @@ import Line from '$lib/Components/Shapes/Line/Line.svelte';
 import LineIcon from 'svelte-icons/md/MdLinearScale.svelte';
 import Rectangle from '$lib/Components/Shapes/Rectangle/Rectangle.svelte';
 import RectangleIcon from 'svelte-icons/md/MdCropSquare.svelte';
-import type IFieldsTemplate from '$lib/shared/IFieldsTemplate';
-import type IComponent from './IComponent';
+import type { IComponentTemplate } from './IComponentTemplate';
 
 const DEFAULT_STYLE = {
 	left: '0',
@@ -38,11 +37,11 @@ const shapeFields = {
 		},
 		width: {
 			component: InputText,
-			value: ''
+			value: '100px'
 		},
 		transform: {
 			component: InputText,
-			value: 'rotate(90deg)'
+			value: 'rotate(0deg)'
 		},
 		zIndex: {
 			component: InputText,
@@ -53,21 +52,6 @@ const shapeFields = {
 
 const textFields = {
 	...shapeFields
-};
-
-const linkFields = {
-	attr: {},
-	style: {
-		...textFields.style,
-		url: {
-			component: InputText,
-			value: ''
-		}
-	}
-};
-
-export type IComponentTemplate = IComponent & {
-	fieldsTemplate: IFieldsTemplate;
 };
 
 export default {
@@ -102,7 +86,7 @@ export default {
 			attr: {},
 			style: {}
 		},
-		fieldsTemplate: linkFields,
+		fieldsTemplate: textFields,
 		value: 'https://google.com'
 	},
 	// Shapes

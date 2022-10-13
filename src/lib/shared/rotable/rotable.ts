@@ -43,7 +43,13 @@ export function rotable(element: HTMLElement) {
 		previousPosition.pageX = e.pageX;
 		previousPosition.pageY = e.pageY;
 
-		element.style.transform = `rotate(${angle}deg)`;
+		element.dispatchEvent(
+			new CustomEvent('styleUpdate', {
+				detail: {
+					transform: `rotate(${angle}deg)`
+				}
+			})
+		);
 	}
 
 	function onMouseUp() {

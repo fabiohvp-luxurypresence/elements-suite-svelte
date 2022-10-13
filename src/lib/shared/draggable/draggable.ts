@@ -50,8 +50,9 @@ export function draggable(element: HTMLElement, options: Partial<DraggableOption
 
 		left += e.movementX;
 		top += e.movementY;
-		element.style.left = `${left}px`;
-		element.style.top = `${top}px`;
+		element.dispatchEvent(
+			new CustomEvent('styleUpdate', { detail: { left: `${left}px`, top: `${top}px` } })
+		);
 	}
 
 	function onMouseUp() {
