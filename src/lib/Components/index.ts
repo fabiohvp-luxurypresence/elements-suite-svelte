@@ -37,7 +37,7 @@ const shapeFields = {
 		},
 		width: {
 			component: InputText,
-			value: '100px'
+			value: ''
 		},
 		transform: {
 			component: InputText,
@@ -84,7 +84,7 @@ export default {
 		element: Link,
 		fields: {
 			attr: {},
-			style: {}
+			style: { ...DEFAULT_STYLE }
 		},
 		fieldsTemplate: textFields,
 		value: 'https://google.com'
