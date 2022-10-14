@@ -1,9 +1,9 @@
 <script lang="ts">
 	import componentTemplates from '$lib/Components';
-	import ComponentsMenu from '$lib/Components/ComponentsMenu/ComponentsMenu.svelte';
+	import ComponentsMenu from '$lib/ComponentsMenu/ComponentsMenu.svelte';
 	import type IComponent from '$lib/Components/IComponent';
-	import PropertiesMenu from '$lib/Components/PropertiesMenu/PropertiesMenu.svelte';
-	import Sidebar from '$lib/Components/Sidebar/Sidebar.svelte';
+	import PropertiesMenu from '$lib/PropertiesMenu/PropertiesMenu.svelte';
+	import Sidebar from '$lib/Sidebar/Sidebar.svelte';
 	import Constants from '$lib/Constants';
 	import type IFields from '$lib/shared/IFields';
 	import type IFieldsTemplate from '$lib/shared/IFieldsTemplate';
@@ -24,6 +24,8 @@
 	let selectedComponentIndex: number = -1;
 	let showComponents = false; // wait for right size math
 
+	$: $slideStore.preview && onSidebarClose();
+
 	onMount(() => {
 		resizer = new ResizeObserver(onResize);
 		resizer.observe(editor);
@@ -33,12 +35,14 @@
 		};
 	});
 
-	function onAdd({ detail: component }: { detail: IComponent }) {
-		const componentTemplate = componentTemplates[component.name];
-		components = [...components, { ...component, fields: { ...componentTemplate.fields } }];
+	function onAdd({ detail }: { detail: IComponent }) {
+		const componentTemplate = getComponentTemplate(detail);
+		const component = { ...detail, fields: { ...componentTemplate.fields } };
+		components = [...components, component];
 	}
 
 	function onComponentClick(index: number) {
+		if ($slideStore.preview) return;
 		if (selectedComponentIndex === index) return;
 
 		openSidebar = true;
@@ -49,7 +53,7 @@
 		};
 		selectedComponentIndex = index;
 
-		const componentTemplate = componentTemplates[selectedComponent.name];
+		const componentTemplate = getComponentTemplate(selectedComponent);
 		fieldsTemplate = componentTemplate.fieldsTemplate;
 	}
 
@@ -152,6 +156,14 @@
 		component.fields.style[style] = `${value}px`;
 	}
 
+	function getComponentTemplate(component: IComponent) {
+		return componentTemplates[getElementName(component.element.name)];
+	}
+
+	function getElementName(element: string) {
+		return element.replace(/Proxy<(\w+)>/g, '$1');
+	}
+
 	function moveComponent(component: IComponent, direction: 'left' | 'top', value: number) {
 		const currentValue = styleToInt(component.fields.style[direction].toString());
 		value = currentValue + value;
@@ -166,6 +178,21 @@
 			selectedComponentFields = null;
 			selectedComponentIndex = -1;
 		}
+	}
+
+	function exportJSON() {
+		let componentsTemp = components.map((o) => {
+			const element = getElementName(o['element'].name);
+			let slide = { ...o };
+			delete (slide as any)['fieldsTemplate'];
+			return {
+				...slide,
+				element
+			};
+		});
+		let json = JSON.stringify(componentsTemp, null, 2);
+		json = json.replace(/"element": "(\w+)"/g, `"element": $1`).replace(/\\r\\n/g, '<br>');
+		window.prompt('Copy to clipboard: Ctrl+C, Enter', json);
 	}
 </script>
 
@@ -186,7 +213,9 @@
 	</Sidebar>
 {/if}
 
-<SlideOptions />
+<SlideOptions>
+	<button on:click={exportJSON}>JSON</button>
+</SlideOptions>
 
 <section
 	bind:this={editor}

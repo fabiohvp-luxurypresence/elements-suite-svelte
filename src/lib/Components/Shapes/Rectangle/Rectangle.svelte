@@ -28,9 +28,3 @@
 	use:resizable
 	use:rotable
 />
-
-<style>
-	.component {
-		border: 1px solid var(--primary-color);
-	}
-</style>

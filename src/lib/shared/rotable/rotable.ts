@@ -46,7 +46,7 @@ export function rotable(element: HTMLElement) {
 		element.dispatchEvent(
 			new CustomEvent('styleUpdate', {
 				detail: {
-					transform: `rotate(${angle}deg)`
+					transform: `rotate(${angle}deg)` // scale(var(--slide-scale))`
 				}
 			})
 		);

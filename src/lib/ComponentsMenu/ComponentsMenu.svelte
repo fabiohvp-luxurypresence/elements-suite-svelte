@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
 	import componentTemplates from '$lib/Components';
-	import type IComponent from '../IComponent';
+	import type IComponent from '../Components/IComponent';
 
 	const dispatch = createEventDispatcher();
 
@@ -13,17 +13,19 @@
 <div class="title">Components</div>
 <div class="components-list">
 	{#each Object.keys(componentTemplates) as key}
-		<div class="item">
-			<button on:click={() => onSelect(componentTemplates[key])}>
-				<div class="icon">
-					<svelte:component
-						this={componentTemplates[key].icon}
-						objAttributes={componentTemplates[key].icon}
-					/>
-				</div>
-				<div class="name">{componentTemplates[key].name}</div>
-			</button>
-		</div>
+		{#if !componentTemplates[key].invisible}
+			<div class="item">
+				<button on:click={() => onSelect(componentTemplates[key])}>
+					<div class="icon">
+						<svelte:component
+							this={componentTemplates[key].icon}
+							objAttributes={componentTemplates[key].icon}
+						/>
+					</div>
+					<div class="name">{componentTemplates[key].name}</div>
+				</button>
+			</div>
+		{/if}
 	{/each}
 </div>
 

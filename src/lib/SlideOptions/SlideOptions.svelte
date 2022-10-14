@@ -8,6 +8,7 @@
 	<Toggle on:toggle={() => slideStore.togglePreview()} label="Preview Mode" />
 	<Toggle on:toggle={() => themeStore.toggle()} label="Dar Mode" />
 	<Toggle on:toggle={() => slideStore.toggleGrid()} label="Grid" />
+	<slot />
 </section>
 
 <style>

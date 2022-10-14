@@ -10,16 +10,16 @@
 	user-select: none;
 }
 
-.draggable .draggable-container{
+.draggable .draggable-container {
 	display: none;
 }
 
-.draggable[draggable="true"] .draggable-container .detector {
+.draggable[draggable='true'] .draggable-container .detector {
 	background-color: var(--outline-color);
-	opacity: .1;
+	opacity: 0.1;
 }
 
-.draggable[draggable="true"] .draggable-container:hover{
+.draggable[draggable='true'] .draggable-container:hover {
 	cursor: move;
 }
 
@@ -41,6 +41,7 @@
 
 .draggable .detector.left {
 	height: 100%;
+	left: 0;
 	top: 0;
 	width: var(--detector-size);
 }

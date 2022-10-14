@@ -4,5 +4,5 @@ export default interface IComponent {
 	name: string; //must be unique
 	element: ConstructorOfATypedSvelteComponent;
 	fields: IFields;
-	value?: string;
+	value?: string | string[];
 }

@@ -11,13 +11,14 @@ import Rectangle from '$lib/Components/Shapes/Rectangle/Rectangle.svelte';
 import RectangleIcon from 'svelte-icons/md/MdCropSquare.svelte';
 import type { IComponentTemplate } from './IComponentTemplate';
 import InputNumber from '$lib/Forms/InputNumber.svelte';
+import HorizontalList from '../Slides/HomeAverages/HorizontalList/HorizontalList.svelte';
 
 const DEFAULT_STYLE = {
 	left: '0',
 	top: '0',
 	height: '50px',
 	width: '200px',
-	transform: 'rotate(0deg)',
+	transform: 'rotate(0deg) scale(var(--slide-scale))',
 	zIndex: 0
 };
 
@@ -50,7 +51,7 @@ const shapeFields = {
 		},
 		transform: {
 			component: InputText,
-			value: 'rotate(0deg)'
+			value: 'rotate(0deg) scale(var(--slide-scale))'
 		},
 		zIndex: {
 			args: { suffix: null },
@@ -111,7 +112,7 @@ export default {
 				top: '10px',
 				height: '1px',
 				width: '200px',
-				transform: 'rotate(0deg)'
+				transform: 'rotate(0deg) scale(var(--slide-scale))'
 			}
 		},
 		fieldsTemplate: shapeFields
@@ -125,5 +126,17 @@ export default {
 			style: { ...DEFAULT_STYLE }
 		},
 		fieldsTemplate: shapeFields
+	},
+	HorizontalList: {
+		invisible: true,
+		name: 'List (H)',
+		icon: TextIcon,
+		element: HorizontalList,
+		fields: {
+			attr: {},
+			style: { ...DEFAULT_STYLE }
+		},
+		fieldsTemplate: textFields,
+		value: ['item 1', 'item 2']
 	}
 } as { [key: string]: IComponentTemplate };
