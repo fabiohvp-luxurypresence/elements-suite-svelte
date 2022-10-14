@@ -13,10 +13,7 @@
 		on:toggle={() => themeStore.toggle()}
 		label={$themeStore === DARK_THEME ? 'Dark' : 'Light'}
 	/>
-	<Toggle
-		on:toggle={() => slideStore.toggleGrid()}
-		label={$slideStore.showGrid ? 'Hide grid' : 'Show grid'}
-	/>
+	<Toggle on:toggle={() => slideStore.toggleGrid()} label={'Grid'} />
 </section>
 
 <style>
