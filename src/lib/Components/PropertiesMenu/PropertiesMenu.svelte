@@ -55,7 +55,11 @@
 	</ul>
 {/if}
 
-<button on:click={onApply}>Apply</button>
+<button
+	on:click={onApply}
+	class="block uppercase mx-auto shadow bg-gray-200 hover:bg-gray-700 focus:shadow-outline focus:outline-none text-black hover:text-white text-xs py-3 px-10 rounded"
+	>Apply</button
+>
 
 <style>
 	ul {
@@ -65,5 +69,8 @@
 
 	li {
 		margin: 1rem 0;
+	}
+	button {
+		margin: 0;
 	}
 </style>

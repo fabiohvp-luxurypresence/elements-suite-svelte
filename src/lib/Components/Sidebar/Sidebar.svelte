@@ -36,6 +36,7 @@
 		border: 1px solid var(--bg-color);
 		height: 100%;
 		left: -1px;
+		top: 0;
 		overflow: auto;
 		position: absolute;
 		transition: all 1s ease-out;

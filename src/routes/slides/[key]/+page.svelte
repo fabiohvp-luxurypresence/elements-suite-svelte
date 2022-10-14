@@ -42,14 +42,16 @@
 <style>
 	.goback {
 		display: inline-block;
-		margin: 0 0.3rem 0;
+		margin: 0 1rem 0;
 		transition: transform 0.5s, box-shadow 1s;
 	}
 	.page-container {
+		padding-top: 1rem;
 		background-color: #efefef;
-		height: 100vh;
 	}
 	.slide-container {
+		border: 4px solid #ffffff;
+		padding-top: 3%;
 		align-items: center;
 		display: flex;
 		justify-content: center;
@@ -60,11 +62,11 @@
 	}
 	.menu-icon {
 		position: absolute;
-		left: 0.1rem;
-		top: 1rem;
+		left: 1rem;
+		top: 0;
+		margin-top: 1rem;
 	}
 	.icon {
-		padding: 0.5rem;
 		width: 40px;
 		cursor: pointer;
 		transition: transform 0.5s, box-shadow 1s;

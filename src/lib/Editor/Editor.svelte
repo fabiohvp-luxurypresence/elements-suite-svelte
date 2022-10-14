@@ -5,6 +5,7 @@
 	import PropertiesMenu from '$lib/Components/PropertiesMenu/PropertiesMenu.svelte';
 	import Sidebar from '$lib/Components/Sidebar/Sidebar.svelte';
 	import Constants from '$lib/Constants';
+	import Toggle from '../Forms/Toggle.svelte';
 	import type IFields from '$lib/shared/IFields';
 	import type IFieldsTemplate from '$lib/shared/IFieldsTemplate';
 	import { styleToInt } from '$lib/shared/styleToInt';
@@ -190,17 +191,18 @@
 		{/if}
 	</Sidebar>
 {/if}
-<div class="nav-container">
-	<nav>
-		<button on:click={() => elementsStore.togglePreview()}
-			>{$elementsStore.preview ? 'Editor' : 'Preview'}</button
-		>
-		<button on:click={() => themeStore.toggle()}
-			>{$themeStore === DARK_THEME ? 'Dark' : 'Light'}</button
-		>
-		<button on:click={onGrid}>{grid ? 'Hide grid' : 'Show grid'}</button>
-	</nav>
-</div>
+
+<nav>
+	<Toggle
+		on:toggle={() => elementsStore.togglePreview()}
+		label={$elementsStore.preview ? 'Editor' : 'Preview'}
+	/>
+	<Toggle
+		on:toggle={() => themeStore.toggle()}
+		label={$themeStore === DARK_THEME ? 'Dark' : 'Light'}
+	/>
+	<Toggle on:toggle={onGrid} label={grid ? 'Hide grid' : 'Show grid'} />
+</nav>
 <div
 	bind:this={editor}
 	class="editor"
@@ -224,23 +226,13 @@
 </div>
 
 <style>
-	.nav-container {
-		position: absolute;
-		right: 0;
-		height: 100%;
-		align-items: center;
-		width: 10rem;
-		display: grid;
-		gap: 2rem;
-	}
-
-	.nav-container nav {
-		width: 90%;
-		justify-content: center;
+	nav {
+		justify-content: flex-start;
 		gap: 1.5rem;
-		height: inherit;
 		display: flex;
-		flex-direction: column;
+		position: absolute;
+		top: 0;
+		margin-top: 1rem;
 	}
 
 	.editor {
@@ -256,15 +248,5 @@
 		background-image: repeating-linear-gradient(var(--grid-color) 0 1px, transparent 1px 100%),
 			repeating-linear-gradient(90deg, var(--grid-color) 0 1px, transparent 1px 100%);
 		background-size: var(--grid-gap) var(--grid-gap);
-	}
-	button {
-		font-size: 1.5rem;
-		cursor: pointer;
-		transition: transform 0.5s;
-	}
-
-	button:hover {
-		background-color: var(--bg-color);
-		transform: scale(1.02) perspective(0px);
 	}
 </style>
