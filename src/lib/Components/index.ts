@@ -10,6 +10,7 @@ import LineIcon from 'svelte-icons/md/MdLinearScale.svelte';
 import Rectangle from '$lib/Components/Shapes/Rectangle/Rectangle.svelte';
 import RectangleIcon from 'svelte-icons/md/MdCropSquare.svelte';
 import type { IComponentTemplate } from './IComponentTemplate';
+import InputNumber from '$lib/Forms/InputNumber.svelte';
 
 const DEFAULT_STYLE = {
 	left: '0',
@@ -32,19 +33,19 @@ const shapeFields = {
 			value: ''
 		},
 		top: {
-			component: InputText,
+			component: InputNumber,
 			value: ''
 		},
 		left: {
-			component: InputText,
+			component: InputNumber,
 			value: ''
 		},
 		height: {
-			component: InputText,
+			component: InputNumber,
 			value: ''
 		},
 		width: {
-			component: InputText,
+			component: InputNumber,
 			value: ''
 		},
 		transform: {
@@ -52,7 +53,8 @@ const shapeFields = {
 			value: 'rotate(0deg)'
 		},
 		zIndex: {
-			component: InputText,
+			args: { suffix: null },
+			component: InputNumber,
 			value: 0
 		}
 	}

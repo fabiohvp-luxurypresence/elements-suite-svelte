@@ -32,6 +32,7 @@
 				<svelte:component
 					this={attr[key].component}
 					value={fields.attr[key]}
+					{...attr[key].args}
 					on:change={({ detail }) => onChange('attr', key, detail)}
 				/>
 			</li>
@@ -48,6 +49,7 @@
 				<svelte:component
 					this={style[key].component}
 					value={fields.style[key]}
+					{...style[key].args}
 					on:change={({ detail }) => onChange('style', key, detail)}
 				/>
 			</li>

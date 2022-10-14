@@ -27,7 +27,7 @@
 
 <style>
 	.content {
-		padding: 10px 10px;
+		padding: 0.5rem 0.5rem;
 	}
 	.sidebar {
 		border-top-right-radius: 5px;
