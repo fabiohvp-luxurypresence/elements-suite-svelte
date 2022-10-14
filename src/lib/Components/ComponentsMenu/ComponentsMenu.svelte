@@ -10,8 +10,8 @@
 	}
 </script>
 
+<div class="title">Components</div>
 <div class="components-list">
-	<div class="title">Components</div>
 	{#each Object.keys(componentTemplates) as key}
 		<div class="item">
 			<button on:click={() => onSelect(componentTemplates[key])}>
@@ -37,8 +37,7 @@
 	}
 
 	.title {
-		font-size: 1.5rem;
-		margin-bottom: 1rem;
+		font-size: 1.2rem;
 	}
 	.item {
 		cursor: pointer;

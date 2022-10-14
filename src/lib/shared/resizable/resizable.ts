@@ -1,4 +1,4 @@
-import { elements as elementsStore } from '../../Slides/slidesStore';
+import slideStore from '../../Slides/slideStore';
 import { styleToInt } from '../styleToInt';
 import './resizable.css';
 
@@ -32,7 +32,7 @@ export function resizable(element: HTMLElement, options: Partial<ResizableOption
 	let previewMode = true;
 	let resizer: HTMLDivElement | null = null;
 
-	const elementsStoreUnsubscriber = elementsStore.subscribe((state) => {
+	const slideStoreUnsubscriber = slideStore.subscribe((state) => {
 		previewMode = state.preview;
 		previewMode ? element.classList.remove('resizable') : element.classList.add('resizable');
 	});
@@ -120,7 +120,7 @@ export function resizable(element: HTMLElement, options: Partial<ResizableOption
 
 	return {
 		destroy() {
-			elementsStoreUnsubscriber();
+			slideStoreUnsubscriber();
 			window.removeEventListener('mousemove', onMouseMove);
 			window.removeEventListener('mouseup', onMouseUp);
 			resizers.forEach((resizer) => resizer.removeEventListener('mousedown', onMouseDown));

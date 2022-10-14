@@ -1,4 +1,4 @@
-import { elements as elementsStore } from '../../Slides/slidesStore';
+import slideStore from '../../Slides/slideStore';
 import './dynamic-text.css';
 
 export interface ResizeTextOptions {
@@ -19,7 +19,7 @@ export function dynamicText(element: HTMLElement, options: Partial<ResizeTextOpt
 	options = { ...DEFAULT_RESIZE_TEXT_OPTIONS, ...options };
 	let previewMode = true;
 
-	const elementsStoreUnsubscriber = elementsStore.subscribe((state) => {
+	const slideStoreUnsubscriber = slideStore.subscribe((state) => {
 		previewMode = state.preview;
 		element.setAttribute('contenteditable', (!state.preview).toString());
 	});
@@ -65,7 +65,7 @@ export function dynamicText(element: HTMLElement, options: Partial<ResizeTextOpt
 
 	return {
 		destroy() {
-			elementsStoreUnsubscriber();
+			slideStoreUnsubscriber();
 			element.removeEventListener('click', onClick);
 			element.removeEventListener('copy', onCopy);
 			element.removeEventListener('input', onInput);

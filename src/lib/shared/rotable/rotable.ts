@@ -1,4 +1,4 @@
-import { elements as elementsStore } from '../../Slides/slidesStore';
+import slideStore from '../../Slides/slideStore';
 import './rotable.css';
 
 export function rotable(element: HTMLElement) {
@@ -8,9 +8,9 @@ export function rotable(element: HTMLElement) {
 
 	let moving = false;
 	let previewMode = true;
-	let previousPosition = { pageX: 0, pageY: 0 };
+	const previousPosition = { pageX: 0, pageY: 0 };
 
-	const elementsStoreUnsubscriber = elementsStore.subscribe((state) => {
+	const slideStoreUnsubscriber = slideStore.subscribe((state) => {
 		previewMode = state.preview;
 		previewMode ? element.classList.remove('rotable') : element.classList.add('rotable');
 	});
@@ -63,7 +63,7 @@ export function rotable(element: HTMLElement) {
 
 	return {
 		destroy() {
-			elementsStoreUnsubscriber();
+			slideStoreUnsubscriber();
 			cursor.removeEventListener('mousedown', onMouseDown);
 			window.removeEventListener('mousemove', onMouseMove);
 			window.removeEventListener('mouseup', onMouseUp);

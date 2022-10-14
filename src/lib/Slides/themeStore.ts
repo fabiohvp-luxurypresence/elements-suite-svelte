@@ -3,7 +3,7 @@ import { get, writable } from 'svelte/store';
 export const DARK_THEME = 'dark';
 export const LIGHT_THEME = 'light';
 
-export const theme = createThemeStore();
+export default createThemeStore();
 
 function createThemeStore() {
 	const store = writable(LIGHT_THEME);

@@ -14,7 +14,7 @@
 </script>
 
 <div class="page-container">
-	<div class="goback">
+	<div class="header">
 		<a href="/slides">
 			<div class="icon">
 				<ArrowBack />
@@ -40,31 +40,25 @@
 </div>
 
 <style>
-	.goback {
-		display: inline-block;
-		margin: 0 1rem 0;
+	.header {
+		padding: 1rem 1rem;
 		transition: transform 0.5s, box-shadow 1s;
+		background-color: var(--header-bg-color);
 	}
 	.page-container {
-		padding-top: 1rem;
-		background-color: #efefef;
+		background-color: var(--editor-bg-color);
 	}
 	.slide-container {
-		border: 4px solid #ffffff;
-		padding-top: 3%;
+		padding: 1rem 1rem;
 		align-items: center;
 		display: flex;
 		justify-content: center;
 		position: relative;
 	}
-	.editor-container {
-		margin-top: 1rem;
-	}
 	.menu-icon {
 		position: absolute;
 		left: 1rem;
-		top: 0;
-		margin-top: 1rem;
+		top: 0.5rem;
 	}
 	.icon {
 		width: 40px;

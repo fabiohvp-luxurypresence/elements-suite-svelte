@@ -5,19 +5,17 @@
 	import PropertiesMenu from '$lib/Components/PropertiesMenu/PropertiesMenu.svelte';
 	import Sidebar from '$lib/Components/Sidebar/Sidebar.svelte';
 	import Constants from '$lib/Constants';
-	import Toggle from '../Forms/Toggle.svelte';
 	import type IFields from '$lib/shared/IFields';
 	import type IFieldsTemplate from '$lib/shared/IFieldsTemplate';
 	import { styleToInt } from '$lib/shared/styleToInt';
 	import { onMount } from 'svelte';
-	import { elements as elementsStore } from '../Slides/slidesStore';
-	import { theme as themeStore, DARK_THEME } from '../Slides/themeStore';
+	import slideStore from '../Slides/slideStore';
+	import SlideOptions from '$lib/SlideOptions/SlideOptions.svelte';
 
 	export let components: IComponent[] = [];
-	export let grid = true;
 	export let openSidebar = false;
 
-	let editor: HTMLDivElement;
+	let editor: HTMLElement;
 	let fieldsTemplate: IFieldsTemplate | null;
 	let previousContainerRect: DOMRect;
 	let resizer: ResizeObserver;
@@ -53,10 +51,6 @@
 
 		const componentTemplate = componentTemplates[selectedComponent.name];
 		fieldsTemplate = componentTemplate.fieldsTemplate;
-	}
-
-	function onGrid() {
-		grid = !grid;
 	}
 
 	function onKeypress(e: KeyboardEvent) {
@@ -192,24 +186,15 @@
 	</Sidebar>
 {/if}
 
-<nav>
-	<Toggle
-		on:toggle={() => elementsStore.togglePreview()}
-		label={$elementsStore.preview ? 'Editor' : 'Preview'}
-	/>
-	<Toggle
-		on:toggle={() => themeStore.toggle()}
-		label={$themeStore === DARK_THEME ? 'Dark' : 'Light'}
-	/>
-	<Toggle on:toggle={onGrid} label={grid ? 'Hide grid' : 'Show grid'} />
-</nav>
-<div
+<SlideOptions />
+
+<section
 	bind:this={editor}
 	class="editor"
-	class:preview-mode={$elementsStore.preview}
-	class:editor-mode={!$elementsStore.preview}
-	class:grid
-	style:--grid-gap={`${$elementsStore.gridGap}px`}
+	class:preview-mode={$slideStore.preview}
+	class:editor-mode={!$slideStore.preview}
+	class:grid={$slideStore.showGrid}
+	style:--grid-gap={`${$slideStore.gridGap}px`}
 	style:--slide-scale={scale}
 >
 	{#if showComponents}
@@ -223,21 +208,13 @@
 			/>
 		{/each}
 	{/if}
-</div>
+</section>
 
 <style>
-	nav {
-		justify-content: flex-start;
-		gap: 1.5rem;
-		display: flex;
-		position: absolute;
-		top: 0;
-		margin-top: 1rem;
-	}
-
 	.editor {
 		--grid-gap: unset;
 		--slide-scale: 1;
+		margin-top: 1rem;
 	}
 
 	.editor :global(.component) {

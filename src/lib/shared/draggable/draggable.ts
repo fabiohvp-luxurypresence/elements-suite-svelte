@@ -1,4 +1,4 @@
-import { elements as elementsStore } from '../../Slides/slidesStore';
+import slideStore from '../../Slides/slideStore';
 import { styleToInt } from '../styleToInt';
 import './draggable.css';
 
@@ -28,7 +28,7 @@ export function draggable(element: HTMLElement, options: Partial<DraggableOption
 		createDetectionDiv('top')
 	];
 
-	const elementsStoreUnsubscriber = elementsStore.subscribe((state) => {
+	const slideStoreUnsubscriber = slideStore.subscribe((state) => {
 		previewMode = state.preview;
 		previewMode ? element.classList.remove('draggable') : element.classList.add('draggable');
 		element.setAttribute('draggable', (!previewMode).toString());
@@ -78,7 +78,7 @@ export function draggable(element: HTMLElement, options: Partial<DraggableOption
 			element.classList.add('draggable');
 		},
 		destroy() {
-			elementsStoreUnsubscriber();
+			slideStoreUnsubscriber();
 			window.removeEventListener('mousemove', onMouseMove);
 			window.removeEventListener('mouseup', onMouseUp);
 			detectors.forEach((detector) => detector.removeEventListener('mousedown', onMouseDown));

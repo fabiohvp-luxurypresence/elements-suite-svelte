@@ -15,14 +15,14 @@
 </script>
 
 {#if isOpen}
-	<div class="sidebar" style={styleToString(style)} transition:fly={{ x: -200, duration: 500 }}>
+	<section class="sidebar" style={styleToString(style)} transition:fly={{ x: -200, duration: 500 }}>
 		<button class="close" on:click={onClose}>
 			<FaRegWindowClose />
 		</button>
 		<div class="content">
 			<slot />
 		</div>
-	</div>
+	</section>
 {/if}
 
 <style>
@@ -48,7 +48,7 @@
 		border: none;
 		color: var(--bg-color-inverted);
 		cursor: pointer;
-		font-size: 24px;
+		font-size: 1rem;
 		position: absolute;
 		right: 10px;
 		top: 10px;

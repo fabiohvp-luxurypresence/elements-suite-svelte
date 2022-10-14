@@ -169,6 +169,8 @@
 	--primary-color: #0d0d0d;
 	--secondary-color: #d0dde9;
 
+	--header-bg-color: #ccc;
+	--editor-bg-color: #efefef;
 	--grid-color: #eee;
 	--outline-color: #333;
 	--slide-width: 1440;
@@ -176,11 +178,13 @@
 }
 
 .dark {
-	--bg-color: #0d0d0d;
+	--bg-color: #3d3e3f;
 	--bg-color-inverted: white;
 	--primary-color: white;
 	--secondary-color: #d0dde9;
 
+	--header-bg-color: #ccc;
+	--editor-bg-color: #0d0d0d;
 	--grid-color: #333;
 	--outline-color: #ddd;
 }
@@ -218,9 +222,8 @@ button {
 	aspect-ratio: var(--slide-width) / var(--slide-height);
 	background-color: var(--bg-color);
 	color: var(--primary-color);
-	height: calc(100vh - 80px);
+	height: calc(100vh - 9rem);
 	max-width: var(--slide-width) px;
-	/* outline: 1px solid var(--outline-color); */
 	position: relative;
 }
 
