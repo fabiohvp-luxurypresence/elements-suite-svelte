@@ -31,6 +31,14 @@ const shapeFields = {
 			component: InputText,
 			value: ''
 		},
+		top: {
+			component: InputText,
+			value: ''
+		},
+		left: {
+			component: InputText,
+			value: ''
+		},
 		height: {
 			component: InputText,
 			value: ''

@@ -4,6 +4,7 @@
 	import type IComponent from '$lib/Components/IComponent';
 	import PropertiesMenu from '$lib/Components/PropertiesMenu/PropertiesMenu.svelte';
 	import Sidebar from '$lib/Components/Sidebar/Sidebar.svelte';
+	import Constants from '$lib/Constants';
 	import type IFields from '$lib/shared/IFields';
 	import type IFieldsTemplate from '$lib/shared/IFieldsTemplate';
 	import { styleToInt } from '$lib/shared/styleToInt';
@@ -19,8 +20,10 @@
 	let fieldsTemplate: IFieldsTemplate | null;
 	let previousContainerRect: DOMRect;
 	let resizer: ResizeObserver;
+	let scale = 1;
 	let selectedComponentFields: IFields | null;
 	let selectedComponentIndex: number = -1;
+	let showComponents = false; // wait for right size math
 
 	onMount(() => {
 		resizer = new ResizeObserver(onResize);
@@ -53,12 +56,6 @@
 
 	function onGrid() {
 		grid = !grid;
-	}
-
-	function moveComponent(component: IComponent, direction: 'left' | 'top', value: number) {
-		const currentValue = styleToInt(component.fields.style[direction].toString());
-		value = currentValue + value;
-		component.fields.style[direction] = `${value}px`;
 	}
 
 	function onKeypress(e: KeyboardEvent) {
@@ -98,6 +95,17 @@
 	}
 
 	function onResize([container]: ResizeObserverEntry[]) {
+		if (
+			Math.round(container.contentRect.width) === Constants.SLIDE_WIDTH ||
+			Math.round(container.contentRect.height) === Constants.SLIDE_HEIGHT
+		) {
+			scale = 1;
+		} else {
+			let diffWidth = (container.contentRect.width * 100) / Constants.SLIDE_WIDTH;
+			scale = diffWidth / 100;
+		}
+		showComponents = true;
+		return;
 		if (previousContainerRect) {
 			const diffHeight = Math.round(container.contentRect.height - previousContainerRect.height);
 			const diffWidth = Math.round(container.contentRect.width - previousContainerRect.width);
@@ -112,6 +120,22 @@
 				component.fields.style.width = `${width}px`;
 			}
 			components = components;
+		} else if (container.contentRect.width !== Constants.SLIDE_WIDTH) {
+			// for (const component of components) {
+			// 	resizeRelativeToCurrentSlideSize(
+			// 		component,
+			// 		'height',
+			// 		container.contentRect.height,
+			// 		Constants.SLIDE_HEIGHT
+			// 	);
+			// 	resizeRelativeToCurrentSlideSize(
+			// 		component,
+			// 		'width',
+			// 		container.contentRect.width,
+			// 		Constants.SLIDE_WIDTH
+			// 	);
+			// }
+			// components = components;
 		}
 		previousContainerRect = container.contentRect;
 	}
@@ -119,6 +143,24 @@
 	function onSidebarClose() {
 		openSidebar = false;
 		resetPropertiesMenu();
+	}
+
+	function resizeRelativeToCurrentSlideSize(
+		component: IComponent,
+		style: string,
+		slideCurrentSize: number,
+		slideDefaultSize: number
+	) {
+		const percent = (slideCurrentSize * 100) / slideDefaultSize;
+		const currentValue = styleToInt(component.fields.style[style].toString());
+		const value = (currentValue * percent) / 100;
+		component.fields.style[style] = `${value}px`;
+	}
+
+	function moveComponent(component: IComponent, direction: 'left' | 'top', value: number) {
+		const currentValue = styleToInt(component.fields.style[direction].toString());
+		value = currentValue + value;
+		component.fields.style[direction] = `${value}px`;
 	}
 
 	function resetPropertiesMenu() {
@@ -165,18 +207,20 @@
 	class:preview-mode={$elementsStore.preview}
 	class:editor-mode={!$elementsStore.preview}
 	class:grid
-	style="--grid-gap:{$elementsStore.gridGap}px"
+	style:--grid-gap={`${$elementsStore.gridGap}px`}
+	style:--slide-scale={scale}
 >
-	<div class="editor-size" />
-	{#each components as component, index (index)}
-		<svelte:component
-			this={component.element}
-			bind:attr={component.fields.attr}
-			bind:style={component.fields.style}
-			bind:value={component.value}
-			on:click={() => onComponentClick(index)}
-		/>
-	{/each}
+	{#if showComponents}
+		{#each components as component, index (index)}
+			<svelte:component
+				this={component.element}
+				bind:attr={component.fields.attr}
+				bind:style={component.fields.style}
+				bind:value={component.value}
+				on:click={() => onComponentClick(index)}
+			/>
+		{/each}
+	{/if}
 </div>
 
 <style>
@@ -198,12 +242,14 @@
 		display: flex;
 		flex-direction: column;
 	}
-	.editor-size {
-		max-height: 100%;
-		max-width: 100%;
-	}
+
 	.editor {
 		--grid-gap: unset;
+		--slide-scale: 1;
+	}
+
+	.editor :global(.component) {
+		transform: scale(var(--slide-scale));
 	}
 
 	.grid {

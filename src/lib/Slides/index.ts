@@ -4,6 +4,7 @@ import BioAlternative from './BioAlternative/index.json';
 import CoverHorizontalImage from './CoverHorizontalImage/index.json';
 import CoverVerticalImage from './CoverVerticalImage/index.json';
 import Custom from './Custom/index.json';
+import Image from './Image/index.json';
 import type { ISlide } from './ISlide';
 
 export const slides: ISlide[] = [
@@ -12,5 +13,6 @@ export const slides: ISlide[] = [
 	BioAlternative,
 	CoverHorizontalImage,
 	CoverVerticalImage,
-	Custom
+	Custom,
+	Image
 ];

@@ -171,6 +171,8 @@
 
 	--grid-color: #eee;
 	--outline-color: #333;
+	--slide-width: 1440;
+	--slide-height: 900;
 }
 
 .dark {
@@ -213,12 +215,12 @@ button {
 
 /*do not move to Editor.svelte, this must be exported in global file*/
 .editor {
-	aspect-ratio: 1440/900;
+	aspect-ratio: var(--slide-width) / var(--slide-height);
 	background-color: var(--bg-color);
 	color: var(--primary-color);
 	height: calc(100vh - 80px);
-	max-width: 1440px;
-	outline: 1px solid var(--outline-color);
+	max-width: var(--slide-width) px;
+	/* outline: 1px solid var(--outline-color); */
 	position: relative;
 }
 

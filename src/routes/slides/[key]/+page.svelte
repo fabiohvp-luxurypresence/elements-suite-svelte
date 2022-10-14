@@ -3,6 +3,7 @@
 	import ArrowBack from 'svelte-icons/md/MdArrowBack.svelte';
 	import MdMenu from 'svelte-icons/md/MdMenu.svelte';
 	import type { ISlide } from '$lib/Slides/ISlide';
+	import Constants from '$lib/Constants';
 
 	export let data: { slide: ISlide };
 	let openSidebar = false;
@@ -28,7 +29,12 @@
 			</button>
 		</div>
 		<div class="editor-container">
-			<Editor components={data.slide.components} bind:openSidebar />
+			<Editor
+				components={data.slide.components}
+				bind:openSidebar
+				--slide-height={Constants.SLIDE_HEIGHT}
+				--slide-width={Constants.SLIDE_WIDTH}
+			/>
 		</div>
 	</div>
 </div>
