@@ -38,7 +38,7 @@
 		--tw-translate-x: 1.75rem; /* translate-x-7 */
 	}
 	.label {
-		color: black;
+		color: var(--bg-color-inverted);
 	}
 
 	.hide {

@@ -5,15 +5,9 @@
 </script>
 
 <section>
-	<Toggle
-		on:toggle={() => slideStore.togglePreview()}
-		label={$slideStore.preview ? 'Editor' : 'Preview'}
-	/>
-	<Toggle
-		on:toggle={() => themeStore.toggle()}
-		label={$themeStore === DARK_THEME ? 'Dark' : 'Light'}
-	/>
-	<Toggle on:toggle={() => slideStore.toggleGrid()} label={'Grid'} />
+	<Toggle on:toggle={() => slideStore.togglePreview()} label="Preview Mode" />
+	<Toggle on:toggle={() => themeStore.toggle()} label="Dar Mode" />
+	<Toggle on:toggle={() => slideStore.toggleGrid()} label="Grid" />
 </section>
 
 <style>
