@@ -84,7 +84,6 @@ function processDynamicText(
 	element: HTMLElement,
 	{ minSize, maxSize, step, unit }: Partial<ResizeTextOptions>
 ) {
-	console.log(minSize, step, maxSize);
 	(Array.isArray(element) ? element : [element]).forEach((el: HTMLElement) => {
 		let i = minSize! + step!;
 		let overflow = false;

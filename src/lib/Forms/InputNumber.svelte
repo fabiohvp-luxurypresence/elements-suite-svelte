@@ -21,7 +21,6 @@
 	$: change(numberValue);
 
 	function change(numberValue: string) {
-		console.log(numberValue);
 		value = numberValue + (suffix ?? '');
 		dispatch('change', numberValue);
 	}
