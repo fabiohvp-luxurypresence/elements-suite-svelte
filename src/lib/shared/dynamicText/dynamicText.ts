@@ -45,8 +45,6 @@ export function dynamicText(element: HTMLElement, options: Partial<ResizeTextOpt
 
 	const onInput = () => processDynamicText(element, options);
 
-	const onResizeWindow = () => processDynamicText(element, options);
-
 	element.parentElement!.classList.add('dynamic-text-container');
 	element.classList.add('dynamic-text');
 
@@ -54,7 +52,6 @@ export function dynamicText(element: HTMLElement, options: Partial<ResizeTextOpt
 	element.addEventListener('copy', onCopy);
 	element.addEventListener('input', onInput);
 	window.addEventListener('click', onClickWindow);
-	window.addEventListener('resize', onResizeWindow);
 
 	const observer = new ResizeObserver(() => {
 		processDynamicText(element, options);
@@ -65,7 +62,7 @@ export function dynamicText(element: HTMLElement, options: Partial<ResizeTextOpt
 	return {
 		update(newOptions: Partial<ResizeTextOptions>) {
 			if (newOptions.maxSize === 0) newOptions.maxSize = 100;
-			if (newOptions.minSize === 0) newOptions.minSize = 1;
+			if (newOptions.minSize === 0) newOptions.minSize = 0.1;
 			options = { ...newOptions };
 		},
 		destroy() {
@@ -74,7 +71,6 @@ export function dynamicText(element: HTMLElement, options: Partial<ResizeTextOpt
 			element.removeEventListener('copy', onCopy);
 			element.removeEventListener('input', onInput);
 			window.removeEventListener('click', onClickWindow);
-			window.removeEventListener('resize', onResizeWindow);
 			observer.unobserve(element);
 		}
 	};

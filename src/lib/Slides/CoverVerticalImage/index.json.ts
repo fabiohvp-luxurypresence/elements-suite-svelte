@@ -11,24 +11,26 @@ export default {
 			fields: {
 				attr: {},
 				style: {
-					left: '2.78px',
-					top: '18.66px',
-					height: '3441.2px',
-					width: '18228.57px'
+					left: '40px',
+					top: '168px',
+					height: '176px',
+					width: '512px',
+					whiteSpace: 'pre-line'
 				}
 			},
 			element: Text,
 			name: 'Text',
-			value: '15th Lane\r\nBay, SA 155123'
+			value: '15th Lane<br>Bay, SA 155123'
 		},
 		{
 			fields: {
 				attr: {},
 				style: {
-					left: '2.78px',
-					top: '40px',
-					height: '255.74px',
-					width: '19385.06px'
+					left: '40px',
+					top: '360px',
+					height: '48px',
+					width: '528px',
+					whiteSpace: 'pre-line'
 				}
 			},
 			element: Text,
@@ -39,10 +41,10 @@ export default {
 			fields: {
 				attr: {},
 				style: {
-					left: '45.28px',
-					top: '4.44px',
-					height: '58884.66px',
-					width: '38904.09px'
+					left: '652px',
+					top: '40px',
+					height: '728px',
+					width: '748px'
 				}
 			},
 			element: Image,
@@ -54,10 +56,11 @@ export default {
 			fields: {
 				attr: {},
 				style: {
-					left: '2.78px',
-					top: '93.15px',
-					height: '113.66px',
-					width: '32150.86px'
+					left: '40px',
+					top: '838px',
+					height: '32px',
+					width: '680px',
+					fontWeight: '700'
 				}
 			},
 			element: Text,
@@ -68,10 +71,11 @@ export default {
 			fields: {
 				attr: {},
 				style: {
-					left: '86.97px',
-					top: '93.15px',
-					height: '113.66px',
-					width: '1515.67px'
+					left: '1253px',
+					top: '838px',
+					height: '32px',
+					width: '148px',
+					fontWeight: '700'
 				}
 			},
 			element: Link,

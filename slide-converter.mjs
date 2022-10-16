@@ -1,22 +1,48 @@
+let slideCorrectHeight = 900;
+let slideCorrectWidth = 1440;
+
+let stylesToCopy = {
+	columnCount: 'auto',
+	columnGap: 'normal',
+	fontFamily: 'TheSeasons',
+	fontWeight: '400',
+	textAlign: 'start',
+	whiteSpace: 'normal'
+};
+
 let iframe = document.querySelector('iframe');
 let slide = iframe.contentDocument.querySelector('.lp-slide__container');
 let elements = slide.querySelectorAll('[form-value]');
 let components = [];
 console.clear();
 
+let screenHeightMultiplier = slideCorrectHeight / slide.clientHeight;
+let screenWidthMultiplier = slideCorrectWidth / slide.clientWidth;
+
 elements.forEach((element) => {
-	const style = getStyle(slide, element);
+	let style;
 	let component = 'Text';
-	let value = element.getAttribute('form-value');
+	let value = element.getAttribute('form-value').trim();
 
 	const inputType = element.getAttribute('form-input');
 
 	if (inputType === 'site') {
 		component = 'Link';
-		value = element.querySelector('a').innerHTML;
+		const link = element.querySelector('a');
+		value = link.innerHTML;
+		style = getStyle(slide, link);
 	} else if (inputType.startsWith('imageUpload')) {
 		component = 'Image';
-	}
+	} /*else {
+		for (const node of element.childNodes) {
+			if (node.innerHTML === value) {
+				style = getStyle(slide, node);
+				break;
+			}
+		}
+	}*/
+
+	if (!style) style = getStyle(slide, element);
 
 	components.push({
 		fields: { attr: {}, style },
@@ -28,13 +54,11 @@ elements.forEach((element) => {
 
 let json = JSON.stringify(components, null, 2);
 json = json.replace(/"element": "(\w+)"/g, `"element": $1`).replace(/\\r\\n/g, '<br>');
-window.prompt('Copy to clipboard: Ctrl+C, Enter', json);
-//console.clear();
+// window.prompt('Copy to clipboard: Ctrl+C, Enter', json);
+// console.clear();
+console.log(json);
 
 function getStyle(slide, element) {
-	const slideCorrectHeight = 900;
-	const slideCorrectWidth = 1440;
-
 	const elementRect = element.getBoundingClientRect();
 	const slideRect = slide.getBoundingClientRect();
 
@@ -44,21 +68,8 @@ function getStyle(slide, element) {
 	const height = slideCorrectHeight * heightMultiplier;
 	const width = slideCorrectWidth * widthMultiplier;
 
-	let left = elementRect.left - slideRect.left;
-	let top = elementRect.top - slideRect.top;
-
-	// left *= widthMultiplier;
-	// top *= heightMultiplier;
-	// console.log(element, left, top);
-
-	// const leftPercentage = (left * 100) / slideRect.width;
-	// const topPercentage = (top * 100) / slideRect.height;
-
-	// left = (slideCorrectWidth * leftPercentage) / 100;
-	// top = (slideCorrectHeight * topPercentage) / 100;
-
-	// left = (left * 100) / slideCorrectWidth;
-	// top = (top * 100) / slideCorrectHeight;
+	let left = (elementRect.left - slideRect.left) * screenWidthMultiplier;
+	let top = (elementRect.top - slideRect.top) * screenHeightMultiplier;
 
 	const style = {
 		left: `${round(left)}px`,
@@ -67,11 +78,12 @@ function getStyle(slide, element) {
 		width: `${round(width > slideCorrectWidth ? slideCorrectWidth : width)}px`
 	};
 
-	if (element.style.fontSize) {
-		style['fontSize'] = element.style.fontSize;
-	}
-	if (element.style.textAlign) {
-		style['textAlign'] = element.style.textAlign;
+	const computedStyles = window.getComputedStyle(element);
+
+	for (const key of Object.keys(stylesToCopy)) {
+		if (computedStyles[key] !== stylesToCopy[key]) {
+			style[key] = computedStyles[key];
+		}
 	}
 	return style;
 }

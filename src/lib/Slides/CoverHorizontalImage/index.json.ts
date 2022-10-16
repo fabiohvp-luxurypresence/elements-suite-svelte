@@ -11,12 +11,12 @@ export default {
 			fields: {
 				attr: {},
 				style: {
-					left: '2.78%',
-					top: '4.89%',
-					height: '2.66%',
-					width: '30.77%',
-					'font-size': '',
-					'text-align': ''
+					left: '40px',
+					top: '44px',
+					height: '24px',
+					width: '443px',
+					fontWeight: '700',
+					whiteSpace: 'nowrap'
 				}
 			},
 			element: Text,
@@ -27,12 +27,12 @@ export default {
 			fields: {
 				attr: {},
 				style: {
-					left: '35.7%',
-					top: '4.89%',
-					height: '2.66%',
-					width: '61.55%',
-					'font-size': '',
-					'text-align': ''
+					left: '514px',
+					top: '44px',
+					height: '18px',
+					width: '886px',
+					fontWeight: '700',
+					textAlign: 'right'
 				}
 			},
 			element: Link,
@@ -43,12 +43,11 @@ export default {
 			fields: {
 				attr: {},
 				style: {
-					left: '2.78%',
-					top: '16.88%',
-					height: '17.78%',
-					width: '94.49%',
-					'font-size': '',
-					'text-align': ''
+					left: '40px',
+					top: '152px',
+					height: '160px',
+					width: '1360px',
+					whiteSpace: 'pre-line'
 				}
 			},
 			element: Text,
@@ -59,12 +58,10 @@ export default {
 			fields: {
 				attr: {},
 				style: {
-					left: '2.56%',
-					top: '35.82%',
-					height: '5.33%',
-					width: '94.49%',
-					'font-size': '',
-					'text-align': ''
+					left: '37px',
+					top: '322px',
+					height: '48px',
+					width: '1360px'
 				}
 			},
 			element: Text,
@@ -75,12 +72,10 @@ export default {
 			fields: {
 				attr: {},
 				style: {
-					left: '2.78%',
-					top: '52.5%',
-					height: '43.5%',
-					width: '93.83%',
-					'font-size': '',
-					'text-align': ''
+					left: '40px',
+					top: '472px',
+					height: '392px',
+					width: '1351px'
 				}
 			},
 			element: Image,

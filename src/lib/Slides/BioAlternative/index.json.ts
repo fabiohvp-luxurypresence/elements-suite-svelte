@@ -11,59 +11,59 @@ export default {
 			fields: {
 				attr: {},
 				style: {
-					left: '4px',
-					top: '8px',
-					height: '736px',
-					width: '469px'
+					left: '88px',
+					top: '48px',
+					height: '228px',
+					width: '544px'
+				}
+			},
+			element: Text,
+			name: 'Text',
+			value: 'Jane Williams'
+		},
+		{
+			fields: {
+				attr: {},
+				style: {
+					left: '127px',
+					top: '332px',
+					height: '483px',
+					width: '467px'
+				}
+			},
+			element: Text,
+			name: 'Text',
+			value:
+				'Urna tortor ipsum venenatis porttitor nunc id ut purus. Cursus nec quam fringilla pellentesque justo lobortis tempor. Volutpat netus velit sed congue netus tortor. Arcu enim quis lobortis.<br><br>At consectetur sit fames enim id amet nisl vulputate. Cras mi facilisis id mauris, cursus nunc turpis nunc. Nisl, amet ac gravida etiam at vel donec consequat. Aliquam et tristique lacus.'
+		},
+		{
+			fields: {
+				attr: {},
+				style: {
+					left: '280px',
+					top: '819px',
+					height: '22px',
+					width: '160px'
+				}
+			},
+			element: Link,
+			name: 'Link',
+			value: 'luxurypresence.com'
+		},
+		{
+			fields: {
+				attr: {},
+				style: {
+					left: '720px',
+					top: '0px',
+					height: '900px',
+					width: '720px'
 				}
 			},
 			element: Image,
 			name: 'Image',
 			value:
 				'https://res.cloudinary.com/luxuryp/images/f_auto,q_auto/etmgfhcf2n0ugqpkcqb9/stocksy_txp4c549b86uif300_large_3610229'
-		},
-		{
-			fields: {
-				attr: {},
-				style: {
-					left: '45px',
-					top: '14px',
-					height: '200px',
-					width: '663px'
-				}
-			},
-			element: Text,
-			name: 'Text',
-			value: 'Meet <br>Jane'
-		},
-		{
-			fields: {
-				attr: {},
-				style: {
-					left: '45px',
-					top: '40px',
-					height: '365px',
-					width: '663px'
-				}
-			},
-			element: Text,
-			name: 'Text',
-			value:
-				'Like many Floridians, Jane fell in love with the opportunities to the south and has become an expert at assisting others with their own relocations to the South Florida area. Her industry specialties include waterfront condos, homes for boat owners, foreclosure investments, estate sales, family relocations and pre-retirement investments.<br>With 16 years of experience in the real estate industry, Jane has been through multiple market cycles as an agent, buyer, and investor, and has a deep understanding for the often-complicated process that her clients will encounter. '
-		},
-		{
-			fields: {
-				attr: {},
-				style: {
-					left: '4px',
-					top: '93px',
-					height: '27px',
-					width: '1252px'
-				}
-			},
-			element: Link,
-			name: 'Link',
-			value: 'luxurypresence.com'
 		}
 	]
 } as ISlide;

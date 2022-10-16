@@ -21,19 +21,3 @@ export function moveComponent(component: IComponent, direction: 'left' | 'top', 
 	value = currentValue + value;
 	component.fields.style[direction] = `${value}px`;
 }
-
-export function exportJSON() {
-	const components = get(editorStore).components;
-	const componentsTemp = components.map((o) => {
-		const element = getElementName(o['element'].name);
-		const slide = { ...o };
-		delete (slide as any)['fieldsTemplate'];
-		return {
-			...slide,
-			element
-		};
-	});
-	let json = JSON.stringify(componentsTemp, null, 2);
-	json = json.replace(/"element": "(\w+)"/g, `"element": $1`).replace(/\\r\\n/g, '<br>');
-	window.prompt('Copy to clipboard: Ctrl+C, Enter', json);
-}

@@ -11,10 +11,10 @@ export default {
 			fields: {
 				attr: {},
 				style: {
-					left: '30px',
-					top: '36px',
-					height: '736px',
-					width: '469px'
+					left: '55.38px',
+					top: '68.41px',
+					height: '736.26px',
+					width: '467.49px'
 				}
 			},
 			element: Image,
@@ -26,10 +26,11 @@ export default {
 			fields: {
 				attr: {},
 				style: {
-					left: '326px',
-					top: '62px',
-					height: '200px',
-					width: '663px'
+					left: '648.3px',
+					top: '122.17px',
+					height: '197.1px',
+					width: '662.96px',
+					whiteSpace: 'pre-line'
 				}
 			},
 			element: Text,
@@ -38,27 +39,34 @@ export default {
 		},
 		{
 			fields: {
-				attr: {},
+				attr: {
+					maxSize: '0rem',
+					minSize: '0rem'
+				},
 				style: {
-					left: '326px',
-					top: '180px',
-					height: '365px',
-					width: '663px'
+					left: '648.3px',
+					top: '358.36px',
+					height: '477.26px',
+					width: '700.42px',
+					columnCount: '2',
+					zIndex: '0',
+					color: '',
+					backgroundColor: ''
 				}
 			},
 			element: Text,
 			name: 'Text',
 			value:
-				'Like many Floridians, Jane fell in love with the opportunities to the south and has become an expert at assisting others with their own relocations to the South Florida area. Her industry specialties include waterfront condos, homes for boat owners, foreclosure investments, estate sales, family relocations and pre-retirement investments.<br>With 16 years of experience in the real estate industry, Jane has been through multiple market cycles as an agent, buyer, and investor, and has a deep understanding for the often-complicated process that her clients will encounter. '
+				'Like many Floridians, Jane fell in love with the opportunities to the south and has become an expert at assisting others with their own relocations to the South Florida area. Her industry specialties include waterfront condos, homes for boat owners, foreclosure investments, estate sales, family relocations and pre-retirement investments.<br>With 16 years of experience in the real estate industry, Jane has been through multiple market cycles as an agent, buyer, and investor, and has a deep understanding for the often-complicated process that her clients will encounter.'
 		},
 		{
 			fields: {
 				attr: {},
 				style: {
-					left: '30px',
-					top: '423px',
-					height: '27px',
-					width: '1252px'
+					left: '55.38px',
+					top: '840.51px',
+					height: '24.43px',
+					width: '143.34px'
 				}
 			},
 			element: Link,
