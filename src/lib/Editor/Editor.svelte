@@ -44,9 +44,3 @@
 		<ComponentList />
 	{/if}
 </section>
-
-<style>
-	.editor {
-		--slide-scale: 1;
-	}
-</style>
