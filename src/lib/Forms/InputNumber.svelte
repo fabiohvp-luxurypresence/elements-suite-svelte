@@ -28,7 +28,7 @@
 		class:rounded-md={!suffix}
 	/>
 	{#if suffix}
-		<span class="items-center bg-gray-200 justify-center px-1 h-5 text-gray-600 rounded-r-md"
+		<span class="items-center bg-gray-200 justify-center px-1 h-6 text-gray-600 rounded-r-md"
 			>{suffix}</span
 		>
 	{/if}

@@ -3,6 +3,6 @@
 </script>
 
 <div class="form-field">
-	<div>{label}</div>
+	<div class="text-sm">{label}</div>
 	<slot />
 </div>

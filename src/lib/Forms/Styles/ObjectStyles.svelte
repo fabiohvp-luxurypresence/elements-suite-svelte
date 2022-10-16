@@ -1,4 +1,5 @@
 <script lang="ts">
+	import ColorPick from '../ColorPick.svelte';
 	import FormField from '../FormField.svelte';
 	import InputNumber from '../InputNumber.svelte';
 	import InputText from '../InputText.svelte';
@@ -21,10 +22,10 @@
 
 <h4>Colors</h4>
 <FormField label="Background color">
-	<InputText bind:value={style.backgroundColor} />
+	<ColorPick bind:value={style.backgroundColor} />
 </FormField>
 <FormField label="Color">
-	<InputText bind:value={style.color} />
+	<ColorPick bind:value={style.color} />
 </FormField>
 
 <h4>Position</h4>

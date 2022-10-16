@@ -29,7 +29,7 @@
 			<button on:click={() => (sidebarVisible = true)}>
 				<div class="icon"><MdMenu /></div>
 			</button>
-			<Sidebar bind:visible={sidebarVisible}>
+			<Sidebar bind:visible={sidebarVisible} title="Components">
 				<ComponentsMenu />
 			</Sidebar>
 		</div>

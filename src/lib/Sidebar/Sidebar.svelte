@@ -6,8 +6,9 @@
 	import { remToPixels } from '$lib/shared/remToPixels';
 	import slideStore from '$lib/Slides/slideStore';
 
-	export let visible: boolean = false;
 	export let style: Partial<CSSStyleDeclaration> = {};
+	export let title: string;
+	export let visible: boolean = false;
 
 	let sidebar: HTMLElement;
 
@@ -28,6 +29,7 @@
 			<FaRegWindowClose />
 		</button>
 		<div class="content">
+			<div class="title">{title}</div>
 			<slot />
 		</div>
 	</section>
@@ -61,5 +63,9 @@
 		top: 10px;
 		width: 30px;
 		padding: 0;
+	}
+	.title {
+		font-size: 1.2rem;
+		margin-bottom: 1rem;
 	}
 </style>

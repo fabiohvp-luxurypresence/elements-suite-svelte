@@ -28,7 +28,7 @@
 	}
 </script>
 
-<Sidebar bind:visible={sidebarVisible}>
+<Sidebar bind:visible={sidebarVisible} title="Properties">
 	<ObjectStyles bind:style />
 </Sidebar>
 
