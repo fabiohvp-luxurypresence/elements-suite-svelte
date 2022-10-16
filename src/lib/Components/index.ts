@@ -1,142 +1,83 @@
-import Image from '$lib/Components/Image/Image.svelte';
-import ImageIcon from 'svelte-icons/io/IoIosImage.svelte';
-import Link from '$lib/Components/Link/Link.svelte';
-import LinkIcon from 'svelte-icons/md/MdLink.svelte';
-import Text from '$lib/Components/Text/Text.svelte';
-import TextIcon from 'svelte-icons/md/MdShortText.svelte';
-import InputText from '$lib/Forms/InputText.svelte';
-import Line from '$lib/Components/Shapes/Line/Line.svelte';
-import LineIcon from 'svelte-icons/md/MdLinearScale.svelte';
-import Rectangle from '$lib/Components/Shapes/Rectangle/Rectangle.svelte';
 import RectangleIcon from 'svelte-icons/md/MdCropSquare.svelte';
+import LineIcon from 'svelte-icons/md/MdLinearScale.svelte';
+import Image from '$lib/Components/Image/Image.svelte';
+import Link from '$lib/Components/Link/Link.svelte';
+import Text from '$lib/Components/Text/Text.svelte';
+import Line from '$lib/Components/Shapes/Line/Line.svelte';
+import Rectangle from '$lib/Components/Shapes/Rectangle/Rectangle.svelte';
+import HorizontalList from '$lib/Slides/HomeAverages/HorizontalList/HorizontalList.svelte';
+import ImageIcon from 'svelte-icons/io/IoIosImage.svelte';
+import TextIcon from 'svelte-icons/md/MdShortText.svelte';
+import LinkIcon from 'svelte-icons/md/MdLink.svelte';
 import type { IComponentTemplate } from './IComponentTemplate';
-import InputNumber from '$lib/Forms/InputNumber.svelte';
-import HorizontalList from '../Slides/HomeAverages/HorizontalList/HorizontalList.svelte';
+import Constants from '$lib/Constants';
 
-const DEFAULT_STYLE = {
-	left: '0',
-	top: '0',
-	height: '50px',
-	width: '200px',
-	transform: 'rotate(0deg) scale(var(--slide-scale))',
-	zIndex: 0
-};
-
-const shapeFields = {
-	attr: {},
-	style: {
-		backgroundColor: {
-			component: InputText,
-			value: ''
-		},
-		color: {
-			component: InputText,
-			value: ''
-		},
-		top: {
-			component: InputNumber,
-			value: ''
-		},
-		left: {
-			component: InputNumber,
-			value: ''
-		},
-		height: {
-			component: InputNumber,
-			value: ''
-		},
-		width: {
-			component: InputNumber,
-			value: ''
-		},
-		transform: {
-			component: InputText,
-			value: 'rotate(0deg) scale(var(--slide-scale))'
-		},
-		zIndex: {
-			args: { suffix: null },
-			component: InputNumber,
-			value: 0
-		}
-	}
-};
-
-const textFields = {
-	...shapeFields
-};
-
-export default {
-	Image: {
+export default [
+	{
 		name: 'Image',
-		icon: ImageIcon,
 		element: Image,
 		fields: {
 			attr: {},
-			style: { ...DEFAULT_STYLE, height: '144px' }
+			style: {
+				...Constants.DEFAULT_COMPONENT_STYLE,
+				height: '144px'
+			}
 		},
-		fieldsTemplate: textFields,
-		value:
-			'https://image.shutterstock.com/image-photo/mountains-under-mist-morning-amazing-260nw-1725825019.jpg'
+		icon: ImageIcon
 	},
-	Text: {
+	{
 		name: 'Text',
-		icon: TextIcon,
 		element: Text,
 		fields: {
 			attr: {},
-			style: { ...DEFAULT_STYLE, height: '80px', textAlign: 'center' }
+			style: {
+				...Constants.DEFAULT_COMPONENT_STYLE,
+				height: '80px',
+				textAlign: 'center',
+				width: '100px'
+			}
 		},
-		fieldsTemplate: textFields,
-		value: 'change me'
+		icon: TextIcon
 	},
-	Link: {
+	{
 		name: 'Link',
-		icon: LinkIcon,
 		element: Link,
 		fields: {
 			attr: {},
-			style: { ...DEFAULT_STYLE }
+			style: { ...Constants.DEFAULT_COMPONENT_STYLE }
 		},
-		fieldsTemplate: textFields,
-		value: 'https://google.com'
+		icon: LinkIcon
 	},
-	// Shapes
-	Line: {
+	{
 		name: 'Line',
-		icon: LineIcon,
 		element: Line,
 		fields: {
 			attr: {},
 			style: {
+				...Constants.DEFAULT_COMPONENT_STYLE,
 				left: '10px',
 				top: '10px',
-				height: '1px',
-				width: '200px',
-				transform: 'rotate(0deg) scale(var(--slide-scale))'
+				height: '1px'
 			}
 		},
-		fieldsTemplate: shapeFields
+		icon: LineIcon
 	},
-	Rectangle: {
+	{
 		name: 'Rectangle',
-		icon: RectangleIcon,
 		element: Rectangle,
 		fields: {
 			attr: {},
-			style: { ...DEFAULT_STYLE }
+			style: { ...Constants.DEFAULT_COMPONENT_STYLE }
 		},
-		fieldsTemplate: shapeFields
+		icon: RectangleIcon
 	},
-	HorizontalList: {
-		invisible: true,
-		name: 'List (H)',
-		icon: TextIcon,
+	{
+		name: 'HorizontalList',
 		element: HorizontalList,
 		fields: {
 			attr: {},
-			style: { ...DEFAULT_STYLE }
+			style: { ...Constants.DEFAULT_COMPONENT_STYLE }
 		},
-		fieldsTemplate: textFields,
-		value: ['item 1', 'item 2']
+		icon: TextIcon
 	}
-} as { [key: string]: IComponentTemplate };
+] as IComponentTemplate[];

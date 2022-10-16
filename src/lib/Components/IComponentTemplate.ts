@@ -1,8 +1,5 @@
-import type IFieldsTemplate from '$lib/shared/IFieldsTemplate';
 import type IComponent from './IComponent';
 
-export type IComponentTemplate = IComponent & {
-	fieldsTemplate: IFieldsTemplate;
+export interface IComponentTemplate extends IComponent {
 	icon: ConstructorOfATypedSvelteComponent;
-	invisible?: boolean;
-};
+}

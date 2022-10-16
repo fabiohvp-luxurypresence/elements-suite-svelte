@@ -1,15 +1,7 @@
-import type IFieldValue from './IFieldValue';
-
-interface IField {
-	[key: string]: {
-		args?: any;
-		component: ConstructorOfATypedSvelteComponent;
-		value: IFieldValue;
-	};
-}
+import type IFieldTemplate from './IFieldTemplate';
 
 interface IFieldsTemplate {
-	attr: IField;
-	style: IField;
+	attr: IFieldTemplate;
+	style: IFieldTemplate;
 }
 export default IFieldsTemplate;

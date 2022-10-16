@@ -1,4 +1,4 @@
-import type { ISlide } from '../ISlide';
+import type { ISlide } from '$lib/Slides/ISlide';
 import Text from '$lib/Components/Text/Text.svelte';
 import HorizontalList from '$lib/Slides/HomeAverages/HorizontalList/HorizontalList.svelte';
 import Rectangle from '$lib/Components/Shapes/Rectangle/Rectangle.svelte';

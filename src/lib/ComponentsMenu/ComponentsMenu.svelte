@@ -1,31 +1,12 @@
 <script lang="ts">
-	import { createEventDispatcher } from 'svelte';
-	import componentTemplates from '$lib/Components';
-	import type IComponent from '../Components/IComponent';
-
-	const dispatch = createEventDispatcher();
-
-	function onSelect(component: IComponent) {
-		dispatch('select', component);
-	}
+	import ComponentsMenuItem from '$lib/ComponentsMenu/ComponentsMenuItem.svelte';
+	import components from '$lib/Components';
 </script>
 
 <div class="title">Components</div>
 <div class="components-list">
-	{#each Object.keys(componentTemplates) as key}
-		{#if !componentTemplates[key].invisible}
-			<div class="item">
-				<button on:click={() => onSelect(componentTemplates[key])}>
-					<div class="icon">
-						<svelte:component
-							this={componentTemplates[key].icon}
-							objAttributes={componentTemplates[key].icon}
-						/>
-					</div>
-					<div class="name">{componentTemplates[key].name}</div>
-				</button>
-			</div>
-		{/if}
+	{#each components as component}
+		<ComponentsMenuItem {component} />
 	{/each}
 </div>
 
@@ -40,28 +21,5 @@
 
 	.title {
 		font-size: 1.2rem;
-	}
-	.item {
-		cursor: pointer;
-	}
-
-	.item:hover {
-		color: var(--bg-color-inverted);
-	}
-
-	.item .icon {
-		width: 4rem;
-	}
-	button {
-		cursor: pointer;
-		border: none;
-		transition: transform 0.3s, box-shadow 1s;
-	}
-	button:hover {
-		transform: scale(1.2) perspective(0px);
-		box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
-	}
-	.name {
-		padding-bottom: 0.3rem;
 	}
 </style>

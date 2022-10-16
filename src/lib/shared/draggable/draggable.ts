@@ -1,5 +1,5 @@
-import slideStore from '../../Slides/slideStore';
-import { styleToInt } from '../styleToInt';
+import slideStore from '$lib/Slides/slideStore';
+import { styleToInt } from '$lib/shared/styleToInt';
 import './draggable.css';
 
 export interface DraggableOptions {

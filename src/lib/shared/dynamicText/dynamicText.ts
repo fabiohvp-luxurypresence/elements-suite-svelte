@@ -1,5 +1,5 @@
-import slideStore from '../../Slides/slideStore';
-import './dynamic-text.css';
+import slideStore from '$lib/Slides/slideStore';
+import '$lib/shared/dynamicText/dynamic-text.css';
 
 export interface ResizeTextOptions {
 	minSize: number;

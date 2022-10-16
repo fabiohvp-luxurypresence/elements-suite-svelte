@@ -1,12 +1,15 @@
 <script lang="ts">
 	import { createEventDispatcher } from 'svelte';
-	import { draggable } from '../../../shared/draggable/draggable';
-	import { resizable } from '../../../shared/resizable/resizable';
-	import { rotable } from '../../../shared/rotable/rotable';
-	import { styleToString } from '../../../shared/styleToString';
+	import { draggable } from '$lib/shared/draggable/draggable';
+	import { resizable } from '$lib/shared/resizable/resizable';
+	import { rotable } from '$lib/shared/rotable/rotable';
+	import { styleToString } from '$lib/shared/styleToString';
+	import Sidebar from '$lib/Sidebar/Sidebar.svelte';
+	import ObjectStyles from '$lib/Forms/Styles/ObjectStyles.svelte';
 
 	const dispatch = createEventDispatcher();
 
+	export let sidebarVisible = false;
 	export let style: Partial<CSSStyleDeclaration> = {};
 
 	function onClick(e: MouseEvent) {
@@ -17,6 +20,10 @@
 		style = { ...style, ...detail };
 	}
 </script>
+
+<Sidebar bind:visible={sidebarVisible}>
+	<ObjectStyles bind:style />
+</Sidebar>
 
 <!-- svelte-ignore a11y-click-events-have-key-events -->
 <div

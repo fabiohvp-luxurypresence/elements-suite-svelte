@@ -1,22 +1,30 @@
 <script lang="ts">
 	import FaRegWindowClose from 'svelte-icons/fa/FaRegWindowClose.svelte';
 	import { styleToString } from '$lib/shared/styleToString';
-	import { createEventDispatcher } from 'svelte';
 	import { fly } from 'svelte/transition';
+	import sidebarStore from './sidebarStore';
+	import { remToPixels } from '$lib/shared/remToPixels';
+	import slideStore from '$lib/Slides/slideStore';
 
-	const dispatch = createEventDispatcher();
-
-	export let isOpen = false;
+	export let visible: boolean = false;
 	export let style: Partial<CSSStyleDeclaration> = {};
 
-	function onClose() {
-		dispatch('close');
-	}
+	let sidebar: HTMLElement;
+
+	$: $sidebarStore.closeAll && (visible = false);
+	$: $slideStore.preview && (visible = false);
+	$: width = $sidebarStore.width;
 </script>
 
-{#if isOpen}
-	<section class="sidebar" style={styleToString(style)} transition:fly={{ x: -200, duration: 500 }}>
-		<button class="close" on:click={onClose}>
+{#if visible}
+	<section
+		bind:this={sidebar}
+		class="sidebar"
+		style={styleToString(style)}
+		style:width={`${width}rem`}
+		transition:fly={{ x: -remToPixels(width), duration: 500 }}
+	>
+		<button class="close" on:click={() => sidebarStore.closeAll()}>
 			<FaRegWindowClose />
 		</button>
 		<div class="content">
@@ -36,11 +44,10 @@
 		border: 1px solid var(--bg-color);
 		height: 100%;
 		left: -1px;
-		top: 0;
+		top: 4.5rem;
 		overflow: auto;
-		position: absolute;
+		position: fixed;
 		transition: all 1s ease-out;
-		width: 12rem;
 		z-index: 1;
 	}
 	.close {

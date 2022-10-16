@@ -1,20 +1,25 @@
 <script lang="ts">
 	import type { IAttribute } from '$lib/shared/IAttribute';
+	import Sidebar from '$lib/Sidebar/Sidebar.svelte';
 	import { createEventDispatcher } from 'svelte';
-	import { draggable } from '../../shared/draggable/draggable';
-	import { dynamicText, type ResizeTextOptions } from '../../shared/dynamicText/dynamicText';
-	import { resizable } from '../../shared/resizable/resizable';
-	import { rotable } from '../../shared/rotable/rotable';
-	import { styleToString } from '../../shared/styleToString';
+	import { draggable } from '$lib/shared/draggable/draggable';
+	import { dynamicText, type ResizeTextOptions } from '$lib/shared/dynamicText/dynamicText';
+	import { resizable } from '$lib/shared/resizable/resizable';
+	import { rotable } from '$lib/shared/rotable/rotable';
+	import { styleToString } from '$lib/shared/styleToString';
+	import sidebarStore from '$lib/Sidebar/sidebarStore';
+	import ObjectStyles from '$lib/Forms/Styles/ObjectStyles.svelte';
 
 	const dispatch = createEventDispatcher();
 
 	export let attr: IAttribute = {};
 	export let options: Partial<ResizeTextOptions> = {};
-	export let style: Partial<CSSStyleDeclaration>;
-	export let value = '';
+	export let sidebarVisible = false;
+	export let style: Partial<CSSStyleDeclaration> = {};
+	export let value: string = 'change me';
 
 	function onClick(e: MouseEvent) {
+		sidebarStore.closeAll();
 		dispatch('click', e);
 	}
 
@@ -22,6 +27,10 @@
 		style = { ...style, ...detail };
 	}
 </script>
+
+<Sidebar bind:visible={sidebarVisible}>
+	<ObjectStyles bind:style />
+</Sidebar>
 
 <div
 	class:component={true}

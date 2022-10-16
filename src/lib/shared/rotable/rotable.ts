@@ -1,5 +1,5 @@
-import slideStore from '../../Slides/slideStore';
-import './rotable.css';
+import slideStore from '$lib/Slides/slideStore';
+import '$lib/shared/rotable/rotable.css';
 
 export function rotable(element: HTMLElement) {
 	const cursor = createChild('cursor');
@@ -46,7 +46,7 @@ export function rotable(element: HTMLElement) {
 		element.dispatchEvent(
 			new CustomEvent('styleUpdate', {
 				detail: {
-					transform: `rotate(${angle}deg)` // scale(var(--slide-scale))`
+					transform: `rotate(${angle}deg)`
 				}
 			})
 		);

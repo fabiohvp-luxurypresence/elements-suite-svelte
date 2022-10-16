@@ -9,8 +9,8 @@
 	const dispatch = createEventDispatcher();
 
 	export let attr: IAttribute = {};
-	export let style: Partial<CSSStyleDeclaration>;
-	export let value: string[] = [];
+	export let style: Partial<CSSStyleDeclaration> = {};
+	export let value: string[] = ['item 1', 'item 2'];
 
 	function onClick(e: MouseEvent) {
 		dispatch('click', e);
@@ -20,6 +20,12 @@
 		style = { ...style, ...detail };
 	}
 </script>
+
+<!-- <Sidebar>
+	<ul>
+		<li>x</li>
+	</ul>
+</Sidebar> -->
 
 <div
 	class:component={true}

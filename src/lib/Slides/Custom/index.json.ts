@@ -1,4 +1,4 @@
-import type { ISlide } from '../ISlide';
+import type { ISlide } from '$lib/Slides/ISlide';
 
 export default {
 	key: 'custom',

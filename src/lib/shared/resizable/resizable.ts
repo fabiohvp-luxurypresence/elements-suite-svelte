@@ -1,6 +1,6 @@
-import slideStore from '../../Slides/slideStore';
-import { styleToInt } from '../styleToInt';
-import './resizable.css';
+import slideStore from '$lib/Slides/slideStore';
+import { styleToInt } from '$lib/shared/styleToInt';
+import '$lib/shared/resizable/resizable.css';
 
 export interface ResizableOptions {
 	dotSize: number;

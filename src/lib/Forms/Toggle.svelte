@@ -2,7 +2,7 @@
 	import { createEventDispatcher } from 'svelte';
 
 	export let label: string = '';
-	export let checked: Boolean = false;
+	export let checked: boolean = false;
 
 	const dispatch = createEventDispatcher();
 </script>

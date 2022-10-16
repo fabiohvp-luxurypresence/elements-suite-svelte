@@ -171,7 +171,6 @@
 
 	--header-bg-color: #ccc;
 	--editor-bg-color: #efefef;
-	--grid-color: #eee;
 	--outline-color: #333;
 	--slide-width: 1440;
 	--slide-height: 900;
@@ -185,7 +184,6 @@
 
 	--header-bg-color: #ccc;
 	--editor-bg-color: #0d0d0d;
-	--grid-color: #333;
 	--outline-color: #ddd;
 }
 
@@ -223,13 +221,15 @@ button {
 	background-color: var(--bg-color);
 	color: var(--primary-color);
 	height: calc(100vh - 9rem);
+	margin-top: 1rem;
 	max-width: var(--slide-width) px;
 	position: relative;
 	outline: 1px solid var(--outline-color);
 }
 
-.component {
+.editor .component {
 	position: absolute;
+	transform: scale(var(--slide-scale));
 }
 
 .input {
@@ -237,8 +237,9 @@ button {
 	@apply border;
 	@apply border-gray-300;
 	@apply flex-1;
-	@apply p-1;
+	@apply px-1;
 	@apply rounded-l-md;
 	@apply sm:text-sm;
 	@apply text-gray-900;
+	@apply h-5;
 }

@@ -1,19 +1,22 @@
 <script lang="ts">
 	import type { IAttribute } from '$lib/shared/IAttribute';
 	import { createEventDispatcher } from 'svelte';
-	import { draggable } from '../../shared/draggable/draggable';
-	import { dynamicText, type ResizeTextOptions } from '../../shared/dynamicText/dynamicText';
-	import { resizable } from '../../shared/resizable/resizable';
-	import { rotable } from '../../shared/rotable/rotable';
-	import { styleToString } from '../../shared/styleToString';
+	import { draggable } from '$lib/shared/draggable/draggable';
+	import { dynamicText, type ResizeTextOptions } from '$lib/shared/dynamicText/dynamicText';
+	import { resizable } from '$lib/shared/resizable/resizable';
+	import { rotable } from '$lib/shared/rotable/rotable';
+	import { styleToString } from '$lib/shared/styleToString';
+	import Sidebar from '$lib/Sidebar/Sidebar.svelte';
+	import ObjectStyles from '$lib/Forms/Styles/ObjectStyles.svelte';
 
 	const dispatch = createEventDispatcher();
 
 	export let attr: IAttribute = {};
-	export let options = {} as Partial<ResizeTextOptions>;
+	export let options: Partial<ResizeTextOptions> = {};
+	export let sidebarVisible = false;
 	export let style: Partial<CSSStyleDeclaration> = {};
 	export let target = '_blank';
-	export let value = '';
+	export let value = 'https://google.com';
 
 	function onClick(e: MouseEvent) {
 		dispatch('click', e);
@@ -23,6 +26,10 @@
 		style = { ...style, ...detail };
 	}
 </script>
+
+<Sidebar bind:visible={sidebarVisible}>
+	<ObjectStyles bind:style />
+</Sidebar>
 
 <div
 	class:component={true}

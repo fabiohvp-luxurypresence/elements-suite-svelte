@@ -1,5 +1,5 @@
 import Image from '$lib/Components/Image/Image.svelte';
-import type { ISlide } from '../ISlide';
+import type { ISlide } from '$lib/Slides/ISlide';
 
 export default {
 	key: 'image',

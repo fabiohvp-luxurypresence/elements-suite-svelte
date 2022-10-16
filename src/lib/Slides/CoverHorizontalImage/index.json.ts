@@ -1,7 +1,7 @@
 import Image from '$lib/Components/Image/Image.svelte';
 import Link from '$lib/Components/Link/Link.svelte';
 import Text from '$lib/Components/Text/Text.svelte';
-import type { ISlide } from '../ISlide';
+import type { ISlide } from '$lib/Slides/ISlide';
 
 export default {
 	key: 'cover-horizontal-image',
