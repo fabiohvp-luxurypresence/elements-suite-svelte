@@ -1,5 +1,5 @@
 import slideStore from '$lib/Slides/slideStore';
-import { styleToInt } from '$lib/shared/styleToInt';
+import { pixelToInt } from '$lib/shared/pixelToInt';
 import './draggable.css';
 
 export interface DraggableOptions {
@@ -39,8 +39,8 @@ export function draggable(element: HTMLElement, options: Partial<DraggableOption
 
 		moving = true;
 		element.classList.add('dragging');
-		left = styleToInt(element.style?.left);
-		top = styleToInt(element.style?.top);
+		left = pixelToInt(element.style?.left);
+		top = pixelToInt(element.style?.top);
 		e.preventDefault();
 		return false;
 	}

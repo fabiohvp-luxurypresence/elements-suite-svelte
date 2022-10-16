@@ -3,7 +3,7 @@
 	import { styleToString } from '$lib/shared/styleToString';
 	import { fly } from 'svelte/transition';
 	import sidebarStore from './sidebarStore';
-	import { remToPixels } from '$lib/shared/remToPixels';
+	import { remToPixel } from '$lib/shared/remToPixel';
 	import slideStore from '$lib/Slides/slideStore';
 
 	export let style: Partial<CSSStyleDeclaration> = {};
@@ -23,7 +23,7 @@
 		class="sidebar"
 		style={styleToString(style)}
 		style:width={`${width}rem`}
-		transition:fly={{ x: -remToPixels(width), duration: 500 }}
+		transition:fly={{ x: -remToPixel(width), duration: 500 }}
 	>
 		<button class="close" on:click={() => sidebarStore.closeAll()}>
 			<FaRegWindowClose />
@@ -45,6 +45,7 @@
 		background-color: var(--bg-color);
 		border: 1px solid var(--bg-color);
 		height: 100%;
+		max-height: calc(100vh - 4.5rem);
 		left: -1px;
 		top: 4.5rem;
 		overflow: auto;

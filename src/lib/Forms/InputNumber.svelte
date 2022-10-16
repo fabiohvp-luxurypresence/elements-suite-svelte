@@ -5,14 +5,24 @@
 
 	export let min: number | undefined = undefined;
 	export let max: number | undefined = undefined;
-	export let value: string = '';
+	export let value: string = '0';
 	export let suffix: string | null = 'px';
 
-	$: numberValue = parseInt(value?.replace(/px/g, '') ?? '0').toString();
+	let numberValue: string;
+
+	$: {
+		if (suffix) {
+			const regex = new RegExp(suffix, 'gi');
+			numberValue = parseInt(value?.replace(regex, '') ?? '0').toString();
+		} else {
+			numberValue = value;
+		}
+	}
 	$: change(numberValue);
 
 	function change(numberValue: string) {
-		value = numberValue + suffix;
+		console.log(numberValue);
+		value = numberValue + (suffix ?? '');
 		dispatch('change', numberValue);
 	}
 </script>

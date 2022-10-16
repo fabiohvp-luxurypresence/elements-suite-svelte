@@ -8,7 +8,7 @@ export interface ResizeTextOptions {
 	unit: 'em' | 'px' | 'rem' | '%';
 }
 
-const DEFAULT_RESIZE_TEXT_OPTIONS: ResizeTextOptions = {
+export const DEFAULT_RESIZE_TEXT_OPTIONS: ResizeTextOptions = {
 	minSize: 1,
 	maxSize: 100,
 	step: 0.25,
@@ -18,7 +18,6 @@ const DEFAULT_RESIZE_TEXT_OPTIONS: ResizeTextOptions = {
 export function dynamicText(element: HTMLElement, options: Partial<ResizeTextOptions> = {}) {
 	options = { ...DEFAULT_RESIZE_TEXT_OPTIONS, ...options };
 	let previewMode = true;
-
 	const slideStoreUnsubscriber = slideStore.subscribe((state) => {
 		previewMode = state.preview;
 		element.setAttribute('contenteditable', (!state.preview).toString());
@@ -64,6 +63,11 @@ export function dynamicText(element: HTMLElement, options: Partial<ResizeTextOpt
 	observer.observe(element);
 
 	return {
+		update(newOptions: Partial<ResizeTextOptions>) {
+			if (newOptions.maxSize === 0) newOptions.maxSize = 100;
+			if (newOptions.minSize === 0) newOptions.minSize = 1;
+			options = { ...newOptions };
+		},
 		destroy() {
 			slideStoreUnsubscriber();
 			element.removeEventListener('click', onClick);
@@ -80,6 +84,7 @@ function processDynamicText(
 	element: HTMLElement,
 	{ minSize, maxSize, step, unit }: Partial<ResizeTextOptions>
 ) {
+	console.log(minSize, step, maxSize);
 	(Array.isArray(element) ? element : [element]).forEach((el: HTMLElement) => {
 		let i = minSize! + step!;
 		let overflow = false;

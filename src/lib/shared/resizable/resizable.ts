@@ -1,5 +1,5 @@
 import slideStore from '$lib/Slides/slideStore';
-import { styleToInt } from '$lib/shared/styleToInt';
+import { pixelToInt } from '$lib/shared/pixelToInt';
 import '$lib/shared/resizable/resizable.css';
 
 export interface ResizableOptions {
@@ -48,10 +48,10 @@ export function resizable(element: HTMLElement, options: Partial<ResizableOption
 		resizer = e.target as HTMLDivElement;
 		elementCss = getComputedStyle(element);
 		coordinates = {
-			left: styleToInt(elementCss.left),
-			height: styleToInt(elementCss.height),
-			top: styleToInt(elementCss.top),
-			width: styleToInt(elementCss.width)
+			left: pixelToInt(elementCss.left),
+			height: pixelToInt(elementCss.height),
+			top: pixelToInt(elementCss.top),
+			width: pixelToInt(elementCss.width)
 		};
 		return false;
 	}

@@ -2,7 +2,6 @@
 	import ColorPick from '../ColorPick.svelte';
 	import FormField from '../FormField.svelte';
 	import InputNumber from '../InputNumber.svelte';
-	import InputText from '../InputText.svelte';
 
 	export let style: Partial<CSSStyleDeclaration>;
 	$: transform = style.transform?.replace(/rotate\((\d+)deg\)/g, '$1') ?? '0';
@@ -16,11 +15,12 @@
 		if (numericAngle > 360) {
 			numericAngle = 0;
 		}
+		numericAngle = Math.round(numericAngle * 100) / 100;
 		style.transform = style.transform?.replace(/rotate\((\d+)deg\)/g, `rotate(${numericAngle}deg)`);
 	}
 </script>
 
-<h4>Colors</h4>
+<div class="form-group-label">Colors</div>
 <FormField label="Background color">
 	<ColorPick bind:value={style.backgroundColor} />
 </FormField>
@@ -28,7 +28,7 @@
 	<ColorPick bind:value={style.color} />
 </FormField>
 
-<h4>Position</h4>
+<div class="form-group-label">Position</div>
 <FormField label="Left">
 	<InputNumber bind:value={style.left} />
 </FormField>
@@ -39,7 +39,7 @@
 	<InputNumber bind:value={style.zIndex} min={0} suffix={null} />
 </FormField>
 
-<h4>Size</h4>
+<div class="form-group-label">Size</div>
 <FormField label="Height">
 	<InputNumber bind:value={style.height} />
 </FormField>
@@ -47,19 +47,7 @@
 	<InputNumber bind:value={style.width} />
 </FormField>
 
-<h4>Transformation</h4>
+<div class="form-group-label">Transformation</div>
 <FormField label="Angle">
 	<InputNumber bind:value={transform} suffix="deg" on:change={onAngleChange} />
 </FormField>
-
-<style>
-	h4 {
-		font-weight: bold;
-		margin-top: 0.5rem;
-		margin-bottom: 0.5rem;
-	}
-
-	:global(.form-field) {
-		margin-left: 1rem;
-	}
-</style>
