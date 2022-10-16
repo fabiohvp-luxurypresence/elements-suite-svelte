@@ -63,10 +63,13 @@ export default {
 			fields: {
 				attr: {},
 				style: {
-					left: '55.38px',
-					top: '840.51px',
-					height: '24.43px',
-					width: '143.34px'
+					left: '60.68px',
+					top: '835.44px',
+					height: '37.72px',
+					width: '380.48px',
+					zIndex: '0',
+					color: '',
+					backgroundColor: ''
 				}
 			},
 			element: Link,
