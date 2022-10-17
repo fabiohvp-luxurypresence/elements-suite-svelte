@@ -9,11 +9,12 @@ export default {
 		{
 			attr: {},
 			style: {
-				left: '13.45%',
-				top: '2.44%',
-				height: '14.81%',
-				width: '23.11%',
-				zIndex: 1
+				left: '194px',
+				top: '22px',
+				height: '133px',
+				width: '333px',
+				textAlign: 'center',
+				zIndex: '1'
 			},
 			element: Text,
 			name: 'Text',
@@ -22,10 +23,10 @@ export default {
 		{
 			attr: {},
 			style: {
-				left: '0%',
-				top: '0%',
-				height: '100%',
-				width: '50%'
+				left: '0px',
+				top: '0px',
+				height: '900px',
+				width: '720px'
 			},
 			element: Image,
 			name: 'Image',
@@ -35,11 +36,12 @@ export default {
 		{
 			attr: {},
 			style: {
-				left: '63.45%',
-				top: '2.44%',
-				height: '14.81%',
-				width: '23.11%',
-				zIndex: 1
+				left: '914px',
+				top: '22px',
+				height: '133px',
+				width: '333px',
+				textAlign: 'center',
+				zIndex: '1'
 			},
 			element: Text,
 			name: 'Text',
@@ -48,10 +50,10 @@ export default {
 		{
 			attr: {},
 			style: {
-				left: '50%',
-				top: '0%',
-				height: '100%',
-				width: '50%'
+				left: '720px',
+				top: '0px',
+				height: '900px',
+				width: '720px'
 			},
 			element: Image,
 			name: 'Image',
