@@ -60,7 +60,7 @@ export function resizable(element: HTMLElement, options: Partial<ResizableOption
 		if (!resizer) return;
 
 		const originalCoordinates = { ...coordinates };
-
+		console.log(resizer.classList);
 		if (resizer.classList.contains('top-left')) {
 			coordinates.left += e.movementX;
 			coordinates.height -= e.movementY;
@@ -75,9 +75,8 @@ export function resizable(element: HTMLElement, options: Partial<ResizableOption
 		}
 
 		if (resizer.classList.contains('bottom-left')) {
-			coordinates.height -= e.movementY;
+			coordinates.height += e.movementY;
 			coordinates.left += e.movementX;
-			coordinates.top += e.movementY;
 			coordinates.width -= e.movementX;
 		}
 
