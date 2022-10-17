@@ -45,7 +45,8 @@ elements.forEach((element) => {
 	if (!style) style = getStyle(slide, element);
 
 	components.push({
-		fields: { attr: {}, style },
+		attr: {},
+		style,
 		element: component,
 		name: component,
 		value

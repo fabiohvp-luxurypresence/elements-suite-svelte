@@ -1,8 +1,9 @@
-import type IFields from '$lib/shared/IFields';
+import type IFieldValue from '$lib/shared/IFieldValue';
 
 export default interface IComponent {
 	name: string; //must be unique
 	element: ConstructorOfATypedSvelteComponent;
-	fields: IFields;
+	attr: { [key: string]: IFieldValue };
+	style: { [key: string]: IFieldValue };
 	value?: string | string[];
 }

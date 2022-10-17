@@ -7,29 +7,25 @@ export default {
 	name: 'Before/After',
 	components: [
 		{
-			fields: {
-				attr: {},
-				style: {
-					left: '13.45%',
-					top: '2.44%',
-					height: '14.81%',
-					width: '23.11%',
-					zIndex: 1
-				}
+			attr: {},
+			style: {
+				left: '13.45%',
+				top: '2.44%',
+				height: '14.81%',
+				width: '23.11%',
+				zIndex: 1
 			},
 			element: Text,
 			name: 'Text',
 			value: 'Welcome'
 		},
 		{
-			fields: {
-				attr: {},
-				style: {
-					left: '0%',
-					top: '0%',
-					height: '100%',
-					width: '50%'
-				}
+			attr: {},
+			style: {
+				left: '0%',
+				top: '0%',
+				height: '100%',
+				width: '50%'
 			},
 			element: Image,
 			name: 'Image',
@@ -37,29 +33,25 @@ export default {
 				'https://res.cloudinary.com/luxuryp/images/f_auto,q_auto/c20g9vrvdws5sdlvfrbm/living-room'
 		},
 		{
-			fields: {
-				attr: {},
-				style: {
-					left: '63.45%',
-					top: '2.44%',
-					height: '14.81%',
-					width: '23.11%',
-					zIndex: 1
-				}
+			attr: {},
+			style: {
+				left: '63.45%',
+				top: '2.44%',
+				height: '14.81%',
+				width: '23.11%',
+				zIndex: 1
 			},
 			element: Text,
 			name: 'Text',
 			value: 'Welcome'
 		},
 		{
-			fields: {
-				attr: {},
-				style: {
-					left: '50%',
-					top: '0%',
-					height: '100%',
-					width: '50%'
-				}
+			attr: {},
+			style: {
+				left: '50%',
+				top: '0%',
+				height: '100%',
+				width: '50%'
 			},
 			element: Image,
 			name: 'Image',

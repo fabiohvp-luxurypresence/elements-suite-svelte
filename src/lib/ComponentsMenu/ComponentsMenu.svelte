@@ -4,7 +4,7 @@
 </script>
 
 <div>
-	{#each components as component}
+	{#each components.filter((o) => !o.invisible) as component}
 		<ComponentsMenuItem {component} />
 	{/each}
 </div>

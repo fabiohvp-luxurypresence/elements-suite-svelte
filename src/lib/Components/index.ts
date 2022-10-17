@@ -16,68 +16,57 @@ export default [
 	{
 		name: 'Image',
 		element: Image,
-		fields: {
-			attr: {},
-			style: {
-				...Constants.DEFAULT_COMPONENT_STYLE,
-				height: '144px'
-			}
+		attr: {},
+		style: {
+			...Constants.DEFAULT_COMPONENT_STYLE,
+			height: '144px'
 		},
 		icon: ImageIcon
 	},
 	{
 		name: 'Text',
 		element: Text,
-		fields: {
-			attr: {},
-			style: {
-				...Constants.DEFAULT_COMPONENT_STYLE,
-				height: '80px',
-				textAlign: 'center',
-				width: '100px'
-			}
+		attr: {},
+		style: {
+			...Constants.DEFAULT_COMPONENT_STYLE,
+			height: '80px',
+			textAlign: 'center',
+			width: '100px'
 		},
 		icon: TextIcon
 	},
 	{
 		name: 'Link',
 		element: Link,
-		fields: {
-			attr: {},
-			style: { ...Constants.DEFAULT_COMPONENT_STYLE }
-		},
+		attr: {},
+		style: { ...Constants.DEFAULT_COMPONENT_STYLE },
 		icon: LinkIcon
 	},
 	{
 		name: 'Line',
 		element: Line,
-		fields: {
-			attr: {},
-			style: {
-				...Constants.DEFAULT_COMPONENT_STYLE,
-				left: '10px',
-				top: '10px',
-				height: '1px'
-			}
+		attr: {},
+		style: {
+			...Constants.DEFAULT_COMPONENT_STYLE,
+			left: '10px',
+			top: '10px',
+			height: '1px'
 		},
 		icon: LineIcon
 	},
 	{
 		name: 'Rectangle',
 		element: Rectangle,
-		fields: {
-			attr: {},
-			style: { ...Constants.DEFAULT_COMPONENT_STYLE }
-		},
+		attr: {},
+		style: { ...Constants.DEFAULT_COMPONENT_STYLE },
 		icon: RectangleIcon
 	},
 	{
+		invisible: true,
 		name: 'HorizontalList',
 		element: HorizontalList,
-		fields: {
-			attr: {},
-			style: { ...Constants.DEFAULT_COMPONENT_STYLE }
-		},
+		attr: {},
+		style: { ...Constants.DEFAULT_COMPONENT_STYLE },
 		icon: TextIcon
 	}
 ] as IComponentTemplate[];

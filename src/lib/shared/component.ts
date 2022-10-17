@@ -1,7 +1,5 @@
 import type IComponent from '$lib/Components/IComponent';
-import editorStore from '$lib/Editor/editorStore';
 import type { SvelteComponent } from 'svelte';
-import { get } from 'svelte/store';
 import { pixelToInt } from './pixelToInt';
 
 export function getComponentProps(componentInstance: SvelteComponent) {
@@ -17,7 +15,7 @@ export function getElementName(element: string) {
 }
 
 export function moveComponent(component: IComponent, direction: 'left' | 'top', value: number) {
-	const currentValue = pixelToInt(component.fields.style[direction].toString());
+	const currentValue = pixelToInt(component.style[direction].toString());
 	value = currentValue + value;
-	component.fields.style[direction] = `${value}px`;
+	component.style[direction] = `${value}px`;
 }

@@ -8,75 +8,65 @@ export default {
 	name: 'Cover (Horizontal Image)',
 	components: [
 		{
-			fields: {
-				attr: {},
-				style: {
-					left: '40px',
-					top: '44px',
-					height: '24px',
-					width: '443px',
-					fontWeight: '700',
-					whiteSpace: 'nowrap'
-				}
+			attr: {},
+			style: {
+				left: '40px',
+				top: '44px',
+				height: '24px',
+				width: '443px',
+				fontWeight: '700',
+				whiteSpace: 'nowrap'
 			},
 			element: Text,
 			name: 'Text',
 			value: 'Jane Mills'
 		},
 		{
-			fields: {
-				attr: {},
-				style: {
-					left: '514px',
-					top: '44px',
-					height: '18px',
-					width: '886px',
-					fontWeight: '700',
-					textAlign: 'right'
-				}
+			attr: {},
+			style: {
+				left: '514px',
+				top: '44px',
+				height: '18px',
+				width: '886px',
+				fontWeight: '700',
+				textAlign: 'right'
 			},
 			element: Link,
 			name: 'Link',
 			value: 'luxurypresence.com'
 		},
 		{
-			fields: {
-				attr: {},
-				style: {
-					left: '40px',
-					top: '152px',
-					height: '160px',
-					width: '1360px',
-					whiteSpace: 'pre-line'
-				}
+			attr: {},
+			style: {
+				left: '40px',
+				top: '152px',
+				height: '160px',
+				width: '1360px',
+				whiteSpace: 'pre-line'
 			},
 			element: Text,
 			name: 'Text',
 			value: '15th Lane Bay,<br>SA 155123'
 		},
 		{
-			fields: {
-				attr: {},
-				style: {
-					left: '37px',
-					top: '322px',
-					height: '48px',
-					width: '1360px'
-				}
+			attr: {},
+			style: {
+				left: '37px',
+				top: '322px',
+				height: '48px',
+				width: '1360px'
 			},
 			element: Text,
 			name: 'Text',
 			value: 'Prepared for Joey Williams'
 		},
 		{
-			fields: {
-				attr: {},
-				style: {
-					left: '40px',
-					top: '472px',
-					height: '392px',
-					width: '1351px'
-				}
+			attr: {},
+			style: {
+				left: '40px',
+				top: '472px',
+				height: '392px',
+				width: '1351px'
 			},
 			element: Image,
 			name: 'Image',

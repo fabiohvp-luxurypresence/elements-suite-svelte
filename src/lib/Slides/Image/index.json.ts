@@ -6,14 +6,12 @@ export default {
 	name: 'Image',
 	components: [
 		{
-			fields: {
-				attr: {},
-				style: {
-					left: '0px',
-					top: '0px',
-					height: '900px',
-					width: '1440px'
-				}
+			attr: {},
+			style: {
+				left: '0px',
+				top: '0px',
+				height: '900px',
+				width: '1440px'
 			},
 			element: Image,
 			name: 'Image',

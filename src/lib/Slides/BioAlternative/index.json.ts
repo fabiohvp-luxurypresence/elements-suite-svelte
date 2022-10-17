@@ -8,28 +8,40 @@ export default {
 	name: 'Bio (Alternative)',
 	components: [
 		{
-			fields: {
-				attr: {},
-				style: {
-					left: '88px',
-					top: '48px',
-					height: '228px',
-					width: '544px'
-				}
+			attr: {
+				maxSize: '0rem',
+				minSize: '0rem'
+			},
+			style: {
+				left: '145px',
+				top: '39.55px',
+				height: '192.79px',
+				width: '469.62px',
+				textAlign: 'center',
+				whiteSpace: 'nowrap',
+				zIndex: '0',
+				color: '',
+				backgroundColor: ''
 			},
 			element: Text,
 			name: 'Text',
 			value: 'Jane Williams'
 		},
 		{
-			fields: {
-				attr: {},
-				style: {
-					left: '127px',
-					top: '332px',
-					height: '483px',
-					width: '467px'
-				}
+			attr: {
+				maxSize: '0rem',
+				minSize: '0rem'
+			},
+			style: {
+				left: '173.02px',
+				top: '273.53px',
+				height: '474.56px',
+				width: '426.77px',
+				textAlign: 'center',
+				whiteSpace: 'pre-line',
+				zIndex: '0',
+				color: '',
+				backgroundColor: ''
 			},
 			element: Text,
 			name: 'Text',
@@ -37,28 +49,31 @@ export default {
 				'Urna tortor ipsum venenatis porttitor nunc id ut purus. Cursus nec quam fringilla pellentesque justo lobortis tempor. Volutpat netus velit sed congue netus tortor. Arcu enim quis lobortis.<br><br>At consectetur sit fames enim id amet nisl vulputate. Cras mi facilisis id mauris, cursus nunc turpis nunc. Nisl, amet ac gravida etiam at vel donec consequat. Aliquam et tristique lacus.'
 		},
 		{
-			fields: {
-				attr: {},
-				style: {
-					left: '280px',
-					top: '819px',
-					height: '22px',
-					width: '160px'
-				}
+			attr: {},
+			style: {
+				left: '262px',
+				top: '830.48px',
+				height: '26.36px',
+				width: '270.24px',
+				textAlign: 'center',
+				zIndex: '0',
+				color: '',
+				backgroundColor: ''
 			},
 			element: Link,
 			name: 'Link',
 			value: 'luxurypresence.com'
 		},
 		{
-			fields: {
-				attr: {},
-				style: {
-					left: '720px',
-					top: '0px',
-					height: '900px',
-					width: '720px'
-				}
+			attr: {},
+			style: {
+				left: '720px',
+				top: '0px',
+				height: '900px',
+				width: '720px',
+				zIndex: '0',
+				color: '',
+				backgroundColor: ''
 			},
 			element: Image,
 			name: 'Image',
