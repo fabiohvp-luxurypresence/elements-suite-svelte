@@ -1,4 +1,5 @@
 import type IComponent from '$lib/Components/IComponent';
+import Constants from '$lib/Constants';
 import { pixelToInt } from '$lib/shared/pixelToInt';
 import { round2decimals } from '$lib/shared/round2decimals';
 import { writable } from 'svelte/store';
@@ -6,11 +7,13 @@ import { writable } from 'svelte/store';
 export interface SlideStore {
 	components: IComponent[];
 	currentIndex: number | undefined;
+	editor: HTMLElement | undefined;
 }
 
 const defaultOptions: SlideStore = {
 	components: [],
-	currentIndex: undefined
+	currentIndex: undefined,
+	editor: undefined
 };
 
 const directions: { [key: string]: [string, number] } = {
@@ -88,11 +91,17 @@ function createSlideStore() {
 				};
 			});
 		},
-		resizeComponents: (scale: number) =>
+		resizeComponents: () =>
 			store.update((value) => {
-				const components = value.components.map(copyComponent);
-				scaleComponents(components, scale, true);
-				return { ...value, components };
+				const rect = value.editor!.getBoundingClientRect();
+				if (Math.round(rect.height) !== Constants.SLIDE_HEIGHT) {
+					const diff = (rect.height * 100) / Constants.SLIDE_HEIGHT;
+					const scale = diff / 100;
+					const components = value.components.map(copyComponent);
+					scaleComponents(components, scale, true);
+					return { ...value, components };
+				}
+				return value;
 			}),
 		setCurrentIndex: (index: number) =>
 			store.update((value) => ({
@@ -113,7 +122,12 @@ function createSlideStore() {
 					components
 				};
 			});
-		}
+		},
+		setEditor: (editor: HTMLElement) =>
+			store.update((value) => ({
+				...value,
+				editor
+			}))
 	};
 }
 

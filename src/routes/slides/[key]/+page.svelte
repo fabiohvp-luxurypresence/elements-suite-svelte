@@ -7,21 +7,40 @@
 	import Sidebar from '$lib/Sidebar/Sidebar.svelte';
 	import ComponentsMenu from '$lib/ComponentsMenu/ComponentsMenu.svelte';
 	import editorStore from '$lib/Editor/editorStore';
+	import { goto } from '$app/navigation';
 
-	export let data: { slide: ISlide };
+	export let data: { slide: ISlide; slides: ISlide[] };
 
 	let sidebarVisible = false;
 
 	$: editorStore.setComponents([...data.slide.components]);
+
+	async function onSlideChange(e: Event) {
+		await goto(`/slides/${(e.target as any).value}`);
+		editorStore.resizeComponents();
+	}
 </script>
 
 <div class="page-container">
-	<div class="header">
+	<div class="header flex">
 		<a href="/slides">
-			<div class="icon">
+			<span class="icon">
 				<ArrowBack />
-			</div>
+			</span>
 		</a>
+
+		<select
+			class="ml-4 bg-gray-50 border border-gray-300 text-gray-900 text-sm 
+			rounded-lg focus:ring-blue-500 focus:border-blue-500 
+			block w-1/3 p-2.5 dark:bg-gray-700 dark:border-gray-600
+			dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500
+			dark:focus:border-blue-500"
+			on:change={(e) => onSlideChange(e)}
+		>
+			{#each data.slides as item}
+				<option selected={item.key === data.slide.key} value={item.key}>{item.name}</option>
+			{/each}
+		</select>
 	</div>
 
 	<div class="slide-container">

@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Constants from '$lib/Constants';
 	import { onMount } from 'svelte';
 	import slideStore from '$lib/Slides/slideStore';
 	import SlideOptions from '$lib/SlideOptions/SlideOptions.svelte';
@@ -12,6 +11,7 @@
 	let showComponents = false; // wait for right size math
 
 	onMount(() => {
+		editorStore.setEditor(editor);
 		resizer = new ResizeObserver(onResize);
 		resizer.observe(editor);
 
@@ -20,12 +20,8 @@
 		};
 	});
 
-	async function onResize([container]: ResizeObserverEntry[]) {
-		if (Math.round(container.contentRect.height) !== Constants.SLIDE_HEIGHT) {
-			let diff = (container.contentRect.height * 100) / Constants.SLIDE_HEIGHT;
-			scale = diff / 100;
-			editorStore.resizeComponents(scale);
-		}
+	async function onResize() {
+		editorStore.resizeComponents();
 		showComponents = true;
 	}
 </script>
